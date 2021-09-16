@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<title>Polygon.io Calls</title>
+<script>
+    /* this script tests calls to the polygon.io stock market api*/
+    var stock;
+    function setup() {
+        //createCanvas(200,200);
+        loadJSON('https://api.polygon.io/v2/reference/financials/AAPL?limit=5&apiKey=3HuGvR5WMK3NuuWIUYfacONthB5wAAex', financials);
+    }
+
+    function financials(socksTicker, limit, type, sort) {
+        var stocksTicker = "AAPL";
+        var limit = 5;
+        var type = "Y";
+        var sort = "reportPeriod";
+        println("Stock Financials:");
+        //stock = data;
+    }
+
+    function draw() {
+        background(0);
+        if (stock) {
+            elllipse(100,100, polygon.main.ticker, polygon.main.ticker);
+            elllipse(100,100, polygon.main.index, polygon.main.index);
+        }
+    }
+
+    function main() {
+        setup();
+        //draw(); 
+    }
+
+</script>
+<body onload="main()">
+    <h1>Invest, Collect, Build MONEY (ICBM)</h1>
+</body>
+</html>
