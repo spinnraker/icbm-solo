@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>ICBM Stock Lookup</h1>
+
+<script type="text/javascript">
+    var apiURL = 'https://api.polygon.io/v2/reference/financials/AAPL?limit=5&apiKey=3HuGvR5WMK3NuuWIUYfacONthB5wAAex';
+    fetch(apiURL).then(response => {
+      return response.json();
+    }).then(data => {
+      // Workspace for JSON data
+      console.log(data);
+    }).catch(err => {
+      // error catch... need something here
+    });
+</script>
+<input id="text" type="text" value="" style="Width:20%"/> 
+  <button>Search</button>
+
+<p>Results</p>   
+  <div v-html="link.FUNCTIONVARIABLE"></div>
+
+</body>
+</html>
