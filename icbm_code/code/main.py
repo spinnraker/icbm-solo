@@ -3,6 +3,7 @@ import time_horizon as th
 # Program asks users a series of questions to determine which
 # securities to suggests (educational purpose ONLY)
 
+# Initialize time horizon object
 user_score = th.TimeHorizon()
 
 question_1 = "How long are you planning on investing your money?"

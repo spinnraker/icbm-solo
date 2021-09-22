@@ -9,23 +9,19 @@ class TimeHorizon:
 
     def get_time(self):
         """Return time score"""
-        return self.time_score
+        return f'Time horizon score: {self.time_score}'
 
     def set_time(self, user_answer):
         """Assigns time horizon scored based on user's input"""
-        while True:
-            if user_answer == 'a':
-                self.time_score = 1
-                break
-            elif user_answer == 'b':
-                self.time_score = 2
-                break
-            elif user_answer == 'c':
-                self.time_score = 3
-                break
-            elif user_answer == 'd':
-                self.time_score = 4
-                break
-            else:
-                print(f'{user_answer} is not a valid value.')
-                break
+        if user_answer == 'a':
+            self.time_score = 1
+        elif user_answer == 'b':
+            self.time_score = 2
+        elif user_answer == 'c':
+            self.time_score = 3
+        elif user_answer == 'd':
+            self.time_score = 4
+        else:
+            print("You entered an invalid value.")
+
+
