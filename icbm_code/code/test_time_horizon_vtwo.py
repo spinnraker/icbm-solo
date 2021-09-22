@@ -12,6 +12,7 @@ class TestTimeHorizon(unittest.TestCase):
         self.th.set_time('b')
         self.assertIs(self.th.time_score, 2)
         self.assertIsNot(self.th.time_score, 3)
+        self.assertEqual(self.th.horizon_category, "Short Term") # Should I keep the test separate?
 
 if __name__ == '__main__':
     unittest.main()
