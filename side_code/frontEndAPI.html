@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ICBM Stock Lookup</title>
+    <link href="styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+  <div class="my-grid">
+    <h1 data-equals class="span-three">ICBM Stock Lookup</h1>
+      <script type="text/javascript">
+        var apiURL = 'https://api.polygon.io/v2/reference/financials/AAPL?limit=5&apiKey=3HuGvR5WMK3NuuWIUYfacONthB5wAAex';
+        fetch(apiURL).then(response => {
+          return response.json();
+          }).then(data => {
+          // Workspace for JSON data
+          console.log(data);
+        }).catch(err => {
+          // error catch... need something here
+        });
+      </script>
+    <input id="text" class="span-two" type="text" value="" style="Width:95%"/>
+      <button>Search</button>
+      <p>Results</p>
+      <div v-html="link.FUNCTIONVARIABLE"></div>
+  </div>
+  </body>
+</html>
