@@ -1,6 +1,9 @@
     const mysql = require("mysql2/promise");
 
-    const insertIntoDB = async () => {
+    mysql.createConnection = async function (param) {
+        
+    }
+    const selectAllDb = async permissionDesc => {
         const connection = await mysql.createConnection({
             host: "sql5.freesqldatabase.com",
             user: "sql5439306",
@@ -10,14 +13,25 @@
         });
 
         try {
-            await connection.query(
-                "INSERT INTO Customer (Customer_Id, Customer_Gender, Customer_Name, Customer_Fname, Customer_Lname, Customer_Email,Customer_TotalFinances,Customer_Bdate,Customer_Risk) VALUES ('1', 'Male', 'Bryan Clark', 'Bryan', 'Clark', 'urmom@msn.com', '103.85', '20210922 10:30:00 PM', '1')"
-            );
+            await connection.query('Select * From Customer;');
 
-            console.log("Inserted");
+            console.log("Called");
         } catch (e) {
             console.log(e);
         }
     };
 
-    insertIntoDB();
+    function setup() {
+        createCanvas(1000,1000);
+
+        var button = select('#submit');
+        button.mousePressed(query);
+    }
+
+    function query() {
+        var url = connection.query("SELECT * FROM Customer;");
+    }
+
+    query();
+    setup();
+    selectAllDb().then(r => {});
