@@ -2,8 +2,8 @@ class TimeHorizon:
     """Calculates Time Horizon Score"""
 
     def __init__(self, time_score=0, horizon_category='', answer=''):
-        """Initialize time attribute."""
-        self.answer = answer
+        """Initialize time attributes."""
+        # self.answer = answer
         self.time_score = time_score
         self.horizon_category = horizon_category
 
