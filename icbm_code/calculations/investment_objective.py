@@ -2,7 +2,7 @@ class InvestmentObjective:
     """Calculates the investment objective score"""
 
     def __init__(self, objective='', objective_final_score=0,
-                 first_answer_score=0, second_answer_score = 0):
+                 first_answer_score=0, second_answer_score=0):
         """Defines investment objective attributes"""
         self.objective = objective
         self.objective_final_score = objective_final_score
@@ -11,7 +11,8 @@ class InvestmentObjective:
 
     def get_objective(self):
         """Displays user's investment objective"""
-        return self.objective
+        return f'Investment objective is {self.objective}\nInvestment Score: ' \
+               f'{self.objective_final_score}'
 
     # Need two separate functions that calculate first and second answer
     def calc_first_answer(self, first_answer):
@@ -35,12 +36,12 @@ class InvestmentObjective:
         elif second_answer == 'b':
             self.second_answer_score = 3
         elif second_answer == 'c':
-            self.second_answer_score == 1
+            self.second_answer_score = 1
         else:
             print("You entered an invalid value")
         return self.second_answer_score
 
-    def set_objective(self, first_answer_score, second_answer_score):
+    def set_objective(self):
         """Assigns investment objective based on user's input"""
         final_score = self.first_answer_score + self.second_answer_score
         if final_score <= 4:
@@ -49,21 +50,29 @@ class InvestmentObjective:
             self.objective = "Balanced"
         else:
             self.objective = "Growth"
+        self.objective_final_score = final_score
+
 
 #
 # question_2 = "\nWhen it comes to investing, I am more interested in capital " \
-#              "growth than maintaining the principal value."
+#               "growth than maintaining the principal value."
 # question_2 += "\na. Strongly Disagree \nb. Somewhat disagree \nc. Neutral" \
-#               "\nd. Somewhat agree \ne.	Strongly agree\nEnter your answer: "
+#                "\nd. Somewhat agree \ne.	Strongly agree\nEnter your answer: "
 #
 # answer_2 = input(question_2)
 #
 # question_3 = "\nIf investing in a stock, would you rather:"
-# question_3 += "\na.	Buy Companies that may make significant technological " \
+# question_3 += "\na. Buy Companies that may make significant technological " \
 #               "advances that are still selling at their low initial offering " \
-#               "price. \nb.	Established, well-known companies that have a " \
+#               "price. \nb. Established, well-known companies that have a " \
 #               "potential for continued growth \nc.'Blue chip' stocks that " \
 #               "pay dividends \nEnter your answer: "
 #
 # answer_3 = input(question_3)
-# user_score_io.set_objective(answer_2, answer_3)
+#
+# inv_obj = InvestmentObjective()
+# inv_obj.calc_first_answer(answer_2)
+# inv_obj.calc_second_answer(answer_3)
+# inv_obj.set_objective()
+# total = inv_obj.get_objective()
+# print(total)
