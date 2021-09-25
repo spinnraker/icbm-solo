@@ -41,7 +41,7 @@ class InvestmentObjective:
         final_score = self.first_answer_score + self.second_answer_score
         if final_score <= 4:
             self.objective = "Income"
-        elif (final_score == 5) or (final_score < 7):
+        elif (final_score == 5) or (final_score <= 6):
             self.objective = "Balanced"
         else:
             self.objective = "Growth"
