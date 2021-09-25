@@ -76,18 +76,21 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.io.objective, "Balanced")
         self.assertNotEqual(self.io.objective, "Income")
 
+    def test_io_set_objective_6(self):
+        """Test for scores equal to 6"""
+        self.io.first_answer_score = 3
+        self.io.second_answer_score = 3
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Growth")
 
-
-
-
-    # def test_set_time_a(self):
-    #     # Test passing value 'a' and returning time score of 1
-    #     self.th.set_time('a')
-    #     self.assertIs(self.th.time_score, 1)
-    #     self.assertIsNot(self.th.time_score, 3)
-    #     self.assertEqual(self.th.horizon_category, "Ultra-Short Term")
-    #     self.assertNotEqual(self.th.horizon_category, "Long Term")
-
+    def test_io_set_objective_7(self):
+        """Test for scores greater than 6"""
+        self.io.first_answer_score = 2
+        self.io.second_answer_score = 5
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Growth")
+        self.assertNotEqual(self.io.objective, "Balanced")
 
 if __name__ == '__main__':
     unittest.main()

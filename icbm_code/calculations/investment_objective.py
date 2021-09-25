@@ -51,28 +51,3 @@ class InvestmentObjective:
         """Displays user's investment objective"""
         return f'Investment objective is {self.objective}\nInvestment Score: ' \
                f'{self.objective_final_score}'
-
-
-#
-# question_2 = "\nWhen it comes to investing, I am more interested in capital " \
-#               "growth than maintaining the principal value."
-# question_2 += "\na. Strongly Disagree \nb. Somewhat disagree \nc. Neutral" \
-#                "\nd. Somewhat agree \ne.	Strongly agree\nEnter your answer: "
-#
-# answer_2 = input(question_2)
-#
-# question_3 = "\nIf investing in a stock, would you rather:"
-# question_3 += "\na. Buy Companies that may make significant technological " \
-#               "advances that are still selling at their low initial offering " \
-#               "price. \nb. Established, well-known companies that have a " \
-#               "potential for continued growth \nc.'Blue chip' stocks that " \
-#               "pay dividends \nEnter your answer: "
-#
-# answer_3 = input(question_3)
-#
-# inv_obj = InvestmentObjective()
-# inv_obj.calc_first_answer(answer_2)
-# inv_obj.calc_second_answer(answer_3)
-# inv_obj.set_objective()
-# total = inv_obj.get_objective()
-# print(total)
