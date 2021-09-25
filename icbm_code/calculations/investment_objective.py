@@ -9,11 +9,6 @@ class InvestmentObjective:
         self.first_answer_score = first_answer_score
         self.second_answer_score = second_answer_score
 
-    def get_objective(self):
-        """Displays user's investment objective"""
-        return f'Investment objective is {self.objective}\nInvestment Score: ' \
-               f'{self.objective_final_score}'
-
     # Need two separate functions that calculate first and second answer
     def calc_first_answer(self, first_answer):
         """Assigns a value to first investment objective question"""
@@ -51,6 +46,11 @@ class InvestmentObjective:
         else:
             self.objective = "Growth"
         self.objective_final_score = final_score
+
+    def get_objective(self):
+        """Displays user's investment objective"""
+        return f'Investment objective is {self.objective}\nInvestment Score: ' \
+               f'{self.objective_final_score}'
 
 
 #

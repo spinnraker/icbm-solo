@@ -14,6 +14,7 @@ class TestTimeHorizon(unittest.TestCase):
         self.assertIs(self.th.time_score, 1)
         self.assertIsNot(self.th.time_score, 3)
         self.assertEqual(self.th.horizon_category, "Ultra-Short Term")
+        self.assertNotEqual(self.th.horizon_category, "Long Term")
 
     def test_set_time_b(self):
         # Test passing value 'b' and returning time score of 2
@@ -21,6 +22,7 @@ class TestTimeHorizon(unittest.TestCase):
         self.assertIs(self.th.time_score, 2)
         self.assertIsNot(self.th.time_score, 3)
         self.assertEqual(self.th.horizon_category, "Short Term")
+        self.assertNotEqual(self.th.horizon_category, "Long Term")
 
     def test_set_time_c(self):
         # Test passing value 'c' and returning time score of 3
@@ -28,6 +30,7 @@ class TestTimeHorizon(unittest.TestCase):
         self.assertIs(self.th.time_score, 3)
         self.assertIsNot(self.th.time_score, 4)
         self.assertEqual(self.th.horizon_category, "Intermediate Term")
+        self.assertNotEqual(self.th.horizon_category, "Long Term")
 
     def test_set_time_d(self):
         # Test passing value 'd' and returning time score of 4
@@ -35,6 +38,7 @@ class TestTimeHorizon(unittest.TestCase):
         self.assertIs(self.th.time_score, 4)
         self.assertIsNot(self.th.time_score, 3)
         self.assertEqual(self.th.horizon_category, "Long Term")
+        self.assertNotEqual(self.th.horizon_category, "Intermediate Term")
 
 
 if __name__ == '__main__':
