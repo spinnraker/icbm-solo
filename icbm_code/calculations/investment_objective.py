@@ -9,7 +9,7 @@ class InvestmentObjective:
         self.first_answer_score = first_answer_score
         self.second_answer_score = second_answer_score
 
-    # Need two separate functions that calculate first and second answer
+    # Functions that calculate questions separately
     def calc_first_answer(self, first_answer):
         """Assigns a value to first investment objective question"""
         if first_answer == 'a':
@@ -20,6 +20,8 @@ class InvestmentObjective:
             self.first_answer_score = 3
         elif first_answer == 'd':
             self.first_answer_score = 4
+        elif first_answer == 'e':
+            self.first_answer_score = 5
         else:
             print('You entered an invalid value')
         return self.first_answer_score
