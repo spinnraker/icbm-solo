@@ -2,7 +2,7 @@ import unittest
 from icbm_code.calculations.investment_objective import InvestmentObjective
 
 
-class MyTestCase(unittest.TestCase):
+class TestInvestmentObjective(unittest.TestCase):
     """Test for investment_objective.py"""
 
     def setUp(self) -> None:

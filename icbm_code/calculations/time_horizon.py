@@ -8,7 +8,7 @@ class TimeHorizon:
 
     def get_time(self):
         """Return time score"""
-        return f'\nTime horizon score: {self.time_score}' \
+        return f'\nTime Horizon Score: {self.time_score}' \
                f'\nHorizon Category: {self.horizon_category}'
 
     def set_time(self, user_answer):
