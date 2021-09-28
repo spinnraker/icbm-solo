@@ -1,0 +1,2 @@
+class RiskProfile:
+    print('hello')
