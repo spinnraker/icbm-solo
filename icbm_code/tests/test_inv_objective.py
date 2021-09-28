@@ -2,7 +2,7 @@ import unittest
 from icbm_code.calculations.investment_objective import InvestmentObjective
 
 
-class MyTestCase(unittest.TestCase):
+class TestInvestmentObjective(unittest.TestCase):
     """Test for investment_objective.py"""
 
     def setUp(self) -> None:
@@ -59,6 +59,7 @@ class MyTestCase(unittest.TestCase):
         self.io.set_objective()
         self.assertEqual(self.io.objective, "Income")
         self.assertNotEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Growth")
 
     def test_io_set_objective_4(self):
         """Test for scores equal to 4"""
@@ -67,6 +68,7 @@ class MyTestCase(unittest.TestCase):
         self.io.set_objective()
         self.assertEqual(self.io.objective, "Income")
         self.assertIsNot(self.io.objective, "Growth")
+        self.assertIsNot(self.io.objective, "Balanced")
 
     def test_io_set_objective_5(self):
         """Test for scores equal to 5"""
@@ -75,6 +77,7 @@ class MyTestCase(unittest.TestCase):
         self.io.set_objective()
         self.assertEqual(self.io.objective, "Balanced")
         self.assertNotEqual(self.io.objective, "Income")
+        self.assertNotEqual(self.io.objective, "Growth")
 
     def test_io_set_objective_6(self):
         """Test for scores equal to 6"""
@@ -83,6 +86,7 @@ class MyTestCase(unittest.TestCase):
         self.io.set_objective()
         self.assertEqual(self.io.objective, "Balanced")
         self.assertNotEqual(self.io.objective, "Growth")
+        self.assertNotEqual(self.io.objective, "Income")
 
     def test_io_set_objective_7(self):
         """Test for scores greater than 6"""
@@ -91,6 +95,7 @@ class MyTestCase(unittest.TestCase):
         self.io.set_objective()
         self.assertEqual(self.io.objective, "Growth")
         self.assertNotEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Income")
 
 if __name__ == '__main__':
     unittest.main()

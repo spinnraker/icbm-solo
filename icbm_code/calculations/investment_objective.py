@@ -51,5 +51,6 @@ class InvestmentObjective:
 
     def get_objective(self):
         """Displays user's investment objective"""
-        return f'Investment objective is {self.objective}\nInvestment Score: ' \
-               f'{self.objective_final_score}'
+        return f'\nInvestment Score: {self.objective_final_score} ' \
+               f'\nInvestment objective: {self.objective}'
+
