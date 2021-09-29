@@ -4,6 +4,7 @@ class EnvironmentalSocialGovernance:
     def __init__(self, esg_score=0, esg_category='', first_answer_score=0,
                  second_answer_score=0, third_answer_score=0,
                  fourth_answer_score=0):
+        """Defines ESG class attributes"""
         self.esg_score = esg_score
         self.esg_category = esg_category
         self.first_answer_score = first_answer_score
