@@ -128,6 +128,46 @@ class TestESG(unittest.TestCase):
         self.esg.fourth_answer_score = 5
         self.esg.set_esg_cat()
         self.assertIs(self.esg.esg_score, 8)
+        self.assertEqual(self.esg.esg_category, "Low")
+        self.assertNotEqual(self.esg.esg_category, "Medium")
+        self.assertNotEqual(self.esg.esg_category, "High")
+
+    def test_esg_set_cat_9(self):
+        """Test for scores equal to 9"""
+        self.esg.first_answer_score = 2
+        self.esg.second_answer_score = 2
+        self.esg.third_answer_score = 2
+        self.esg.fourth_answer_score = 3
+        self.esg.set_esg_cat()
+        self.assertIs(self.esg.esg_score, 9)
+        self.assertEqual(self.esg.esg_category, "Medium")
+        self.assertNotEqual(self.esg.esg_category, "Low")
+        self.assertNotEqual(self.esg.esg_category, "High")
+
+    def test_esg_set_cat_less_15(self):
+        """Test for scores less than or equal to 15"""
+        self.esg.first_answer_score = 3
+        self.esg.second_answer_score = 4
+        self.esg.third_answer_score = 4
+        self.esg.fourth_answer_score = 4
+        self.esg.set_esg_cat()
+        self.assertIs(self.esg.esg_score, 15)
+        self.assertEqual(self.esg.esg_category, "Medium")
+        self.assertNotEqual(self.esg.esg_category, "Low")
+        self.assertNotEqual(self.esg.esg_category, "High")
+
+    def test_esg_set_cat_more_15(self):
+        """Test for scores greater than 15"""
+        self.esg.first_answer_score = 4
+        self.esg.second_answer_score = 4
+        self.esg.third_answer_score = 4
+        self.esg.fourth_answer_score = 4
+        self.esg.set_esg_cat()
+        self.assertIs(self.esg.esg_score, 16)
+        self.assertEqual(self.esg.esg_category, "High")
+        self.assertNotEqual(self.esg.esg_category, "Low")
+        self.assertNotEqual(self.esg.esg_category, "Medium")
+
 
 if __name__ == '__main__':
     unittest.main()
