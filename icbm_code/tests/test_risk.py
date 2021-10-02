@@ -85,6 +85,7 @@ class TestRisk(unittest.TestCase):
 
     # Unit tests to verify categories
     def test_set_risk_less_8(self):
+        """Test for scores less than 8"""
         self.risk.first_answer_score = 1
         self.risk.second_answer_score = 2
         self.risk.third_answer_score = 1
@@ -94,7 +95,60 @@ class TestRisk(unittest.TestCase):
         self.assertNotEqual(self.risk.risk_category, "Moderate")
         self.assertNotEqual(self.risk.risk_category, "Aggressive")
 
+    def test_set_risk_8(self):
+        """Test for scores equal to 8"""
+        self.risk.first_answer_score = 1
+        self.risk.second_answer_score = 1
+        self.risk.third_answer_score = 3
+        self.risk.fourth_answer_score = 3
+        self.risk.set_risk_score()
+        self.assertEqual(self.risk.risk_category, "Conservative")
+        self.assertNotEqual(self.risk.risk_category, "Moderate")
+        self.assertNotEqual(self.risk.risk_category, "Aggressive")
 
+    def test_set_risk_9(self):
+        """Test for scores equal to 9"""
+        self.risk.first_answer_score = 1
+        self.risk.second_answer_score = 2
+        self.risk.third_answer_score = 3
+        self.risk.fourth_answer_score = 3
+        self.risk.set_risk_score()
+        self.assertEqual(self.risk.risk_category, "Moderate")
+        self.assertNotEqual(self.risk.risk_category, "Conservative")
+        self.assertNotEqual(self.risk.risk_category, "Aggressive")
+
+    def test_set_risk_less_15(self):
+        """Test for scores less than 15"""
+        self.risk.first_answer_score = 2
+        self.risk.second_answer_score = 2
+        self.risk.third_answer_score = 5
+        self.risk.fourth_answer_score = 5
+        self.risk.set_risk_score()
+        self.assertEqual(self.risk.risk_category, "Moderate")
+        self.assertNotEqual(self.risk.risk_category, "Conservative")
+        self.assertNotEqual(self.risk.risk_category, "Aggressive")
+
+    def test_set_risk_15(self):
+        """Test for scores equal to 15"""
+        self.risk.first_answer_score = 4
+        self.risk.second_answer_score = 4
+        self.risk.third_answer_score = 4
+        self.risk.fourth_answer_score = 3
+        self.risk.set_risk_score()
+        self.assertEqual(self.risk.risk_category, "Moderate")
+        self.assertNotEqual(self.risk.risk_category, "Conservative")
+        self.assertNotEqual(self.risk.risk_category, "Aggressive")
+
+    def test_set_risk_16(self):
+        """Test for scores greater than 15"""
+        self.risk.first_answer_score = 5
+        self.risk.second_answer_score = 5
+        self.risk.third_answer_score = 3
+        self.risk.fourth_answer_score = 6
+        self.risk.set_risk_score()
+        self.assertEqual(self.risk.risk_category, "Aggressive")
+        self.assertNotEqual(self.risk.risk_category, "Conservative")
+        self.assertNotEqual(self.risk.risk_category, "Moderate")
 
 if __name__ == '__main__':
     unittest.main()
