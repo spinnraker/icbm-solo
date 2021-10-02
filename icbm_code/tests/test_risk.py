@@ -7,7 +7,7 @@ class TestRisk(unittest.TestCase):
 
     def setUp(self) -> None:
         self.risk = RiskProfile()
-
+    # Unit tests to verify scores
     def test_risk_first_q_a(self):
         """Test passing value 'a' and returning risk score of 1"""
         self.risk.calc_first_answer('a')
@@ -67,6 +67,34 @@ class TestRisk(unittest.TestCase):
         """Test passing value 'c' and returning risk score of 5"""
         self.risk.calc_third_answer('c')
         self.assertIs(self.risk.third_answer_score, 5)
+
+    def test_risk_fourth_q_a(self):
+        """Test passing value 'a' and returning risk score of 1"""
+        self.risk.calc_fourth_answer('a')
+        self.assertIs(self.risk.fourth_answer_score, 1)
+
+    def test_risk_fourth_q_b(self):
+        """Test passing value 'b' and returning risk score of 3"""
+        self.risk.calc_fourth_answer('b')
+        self.assertIs(self.risk.fourth_answer_score, 3)
+
+    def test_risk_fourth_q_c(self):
+        """Test passing value 'c' and returning risk score of 5"""
+        self.risk.calc_fourth_answer('c')
+        self.assertIs(self.risk.fourth_answer_score, 5)
+
+    # Unit tests to verify categories
+    def test_set_risk_less_8(self):
+        self.risk.first_answer_score = 1
+        self.risk.second_answer_score = 2
+        self.risk.third_answer_score = 1
+        self.risk.fourth_answer_score = 1
+        self.risk.set_risk_score()
+        self.assertEqual(self.risk.risk_category, "Conservative")
+        self.assertNotEqual(self.risk.risk_category, "Moderate")
+        self.assertNotEqual(self.risk.risk_category, "Aggressive")
+
+
 
 if __name__ == '__main__':
     unittest.main()
