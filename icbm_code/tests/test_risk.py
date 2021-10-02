@@ -53,5 +53,20 @@ class TestRisk(unittest.TestCase):
         self.risk.calc_second_answer('d')
         self.assertIs(self.risk.second_answer_score, 5)
 
+    def test_risk_third_q_a(self):
+        """Test passing value 'a' and returning risk score of 1"""
+        self.risk.calc_third_answer('a')
+        self.assertIs(self.risk.third_answer_score, 1)
+
+    def test_risk_third_q_b(self):
+        """Test passing value 'c' and returning risk score of 3"""
+        self.risk.calc_third_answer('b')
+        self.assertIs(self.risk.third_answer_score, 3)
+
+    def test_risk_third_q_c(self):
+        """Test passing value 'c' and returning risk score of 5"""
+        self.risk.calc_third_answer('c')
+        self.assertIs(self.risk.third_answer_score, 5)
+
 if __name__ == '__main__':
     unittest.main()
