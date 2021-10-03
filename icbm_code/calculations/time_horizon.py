@@ -15,15 +15,12 @@ class TimeHorizon:
         """Assigns time horizon scored based on user's input"""
         if user_answer == 'a':
             self.time_score = 1
-            self.horizon_category = 'Ultra-Short Term'
+            self.horizon_category = 'Short Term'
         elif user_answer == 'b':
             self.time_score = 2
-            self.horizon_category = 'Short Term'
+            self.horizon_category = 'Intermediate Term'
         elif user_answer == 'c':
             self.time_score = 3
-            self.horizon_category = 'Intermediate Term'
-        elif user_answer == 'd':
-            self.time_score = 4
             self.horizon_category = 'Long Term'
         else:
             print("You entered an invalid value.")
