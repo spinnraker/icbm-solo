@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<h1 xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">Investment Objective</h1>
+<h2>When it comes to investing, I am more interested in capital growth than maintaining the principal value</h2>
+
+<form name="io-first" action="/io-first" method="get">
+    <input type="radio" id="a" name="io-first" value="a" required>
+        <label for="a">Strongly Disagree</label></br>
+    <input type="radio" id="b" name="io-first" value="b">
+        <label for="b">Somewhat Disagree </label></br>
+    <input type="radio" id="c" name="io-first" value="a">
+        <label for="c">Neutral</label></br>
+    <input type="radio" id="d" name="io-first" value="d">
+        <label for="d">Somewhat Agree</label></br>
+    <input type="radio" id="e" name="io-first" value="d">
+        <label for="e">Strongly Agree</label></br>
+    <input type="submit" value="Next Question">
+</form>
+
+{% endblock %}
