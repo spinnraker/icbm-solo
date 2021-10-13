@@ -40,5 +40,7 @@ def io_second():
     user_score_io.calc_second_answer(s_answer)
     user_score_io.set_objective()
     print(user_score_io.get_objective())
-    return render_template('answers.html', s_answer=request.args.get('io-second'))
+    # return render_template('answers.html', s_answer=request.args.get('io-second'))
+    return render_template("/rt-first.html")
+
 
