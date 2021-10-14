@@ -9,7 +9,7 @@ final_rp = rp.RiskProfile()
 # print(final_th.horizon_category)
 
 class MixCalculator:
-    """Calculate security mix based on time horizon and risk tolerance"""
+    """Calculate category mix based on time horizon and risk tolerance scores"""
 
     def __init__(self, asset_mix=""):
         self.asset_mix = asset_mix
