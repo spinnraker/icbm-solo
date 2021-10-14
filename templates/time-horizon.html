@@ -1,21 +1,27 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
+<div class="split left">
+    <div class="centered">
 <img src="{{url_for('static', filename='logo.png')}}"/>
-
-<h1>Time Horizon</h1>
+<!--<h1>Time Horizon</h1>-->
 <h2>Question 1</h2>
-
 <h3>How long are you planning on investing your money?</h3>
-
+    </div>
+</div>
+<div class="split right">
+    <div class="centered">
 <form name="time_horizon" action="/time-horizon" method="get">
     <input type="radio" id="a" name="time_horizon" value="a" required>
     <label for="a">Less than 4 years</label><br>
         <input type="radio" id="b" name="time_horizon" value="b">
         <label for="b">5-10 years</label><br>
     <input type="radio" id="c" name="time_horizon" value="c">
-        <label for="c">11+ years</label><br>
-    <input type="submit" value="Next Question">
+        <label for="c">11+ years</label><br><br><br>
+    <input type="submit" value="Next Question" class="button">
+        </div>
+</div>
 </form>
 
 {% endblock %}
