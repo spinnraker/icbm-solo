@@ -23,10 +23,6 @@ def start():
     # return redirect('/time-horizon')
     return render_template("time-horizon.html")
 
-# How to create new routes or pages:
-
-
-
 
 @app.route("/time-horizon")
 def time_horizon():
@@ -44,7 +40,7 @@ def io_first():
     # return render_template("answers.html", f_answer=request.args.get('io-first'))
     return render_template("/io-second.html")
 
-
+# How to create new routes or pages:
 
 @app.route("/io-second") # Name of the route will is whatever the last render_template (right above) shows
 def io_second(): # create new function, and named it the same as the route
