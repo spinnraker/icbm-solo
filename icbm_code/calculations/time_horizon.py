@@ -8,6 +8,7 @@ class TimeHorizon:
 
     def get_time(self):
         """Return time score"""
+        # return self.horizon_category
         return f'\nTime Horizon Score: {self.time_score}' \
                f'\nHorizon Category: {self.horizon_category}'
 
