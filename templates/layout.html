@@ -2,14 +2,87 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="initial-scale=1, width=device=width" charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <title>ICBM</title>
 
     <style>
        body {
-       background-color: #072f5f;
-       color: white;
-       font-family: Arial, Helvetica, sans-serif;
+           background-color: #152349;
+           color: white;
+           font-family: 'Roboto', sans-serif;
+           margin: 0;
+           font-weight: 400;
+           line-height: 125%;
        }
+
+
+    /* Split the screen in half */
+    .split {
+        height: 100%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    /* Control the left side */
+    .left {
+        left: 0;
+        background-color: #152349;
+    }
+
+    /* Control the right side */
+    .right {
+        right: 0;
+        background-color: white;
+        color: #152349
+    }
+
+    /* If you want the content centered horizontally and vertically */
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: justify;
+    }
+
+    /* Style the image inside the centered container, if needed */
+    .centered img {
+        width: 350px;
+    }
+
+    h1, h2 {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        line-height: 150%;
+    }
+
+    h2 {
+    font-size: 1.5rem;
+    line-height: 150%;
+    }
+
+    .button {
+         background-color: #152349;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 24px;
+          border-radius: 12px;
+    }
+
     </style>
 </head>
 <body>
