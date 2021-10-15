@@ -4,12 +4,18 @@
 
 <div class="split left">
     <div class="centered">
-<img src="{{url_for('static', filename='logo_2.png')}}"/>
-<h1>Time Horizon</h1>
-<h2>Question 1</h2>
+<img src="{{url_for('static', filename='logo_3.png')}}"/>
+<!--<h1>Time Horizon</h1>-->
+<!--<h2>Question 1</h2>-->
 <h3>How long are you planning on investing your money?</h3>
+<!--        progress bar-->
+        <div class="meter">
+            <span style="width: 9%"></span>
+        </div>
     </div>
 </div>
+
+
 <div class="split right">
     <div class="centered">
 <form name="time_horizon" action="/time-horizon" method="get">
