@@ -54,7 +54,7 @@ def io_second(): # create new function, and named it the same as the route
     print(user_score_io.get_objective()) # After calling SET function, call the GET function
     # final_answers.append(user_score_io.get_objective())
     final_answers['Investment Objective'] = user_score_io.get_objective()
-    return render_template("/answers.html") # point to the next question, then go to that HTML page file under templates and create a new form.
+    return render_template("/rp-first.html") # point to the next question, then go to that HTML page file under templates and create a new form.
                                             # Repeat the process with as many questions as needed. Once you create all the
                                             # questions for a category (risk profile, esg, etc.) move to the next category
 @app.route("/api")

@@ -1,7 +1,18 @@
 {% extends 'layout.html' %}
 {% block body %}
+
+<div class="split left">
+    <div class="centered">
+<img src="{{url_for('static', filename='logo_2.png')}}"/>
 <h1>Investment Objective</h1>
-<h2>If investing in a stock, would you rather:</h2>
+        <h2>Question 3</h2>
+<h3>If investing in a stock, would you rather:</h3>
+
+            </div>
+</div>
+
+<div class="split right">
+    <div class="centered">
 <form name="io-second" action="/io-second" method="get">
     <input type="radio" name="io-second" id="a" value="a" required>
     <label for="a">Buy Companies that may make significant technological advances that are still selling at their
@@ -9,8 +20,9 @@
     <input type="radio" id="b" name="io-second" value="b">
     <label for="b">Established, well-known companies that have a potential for continued growth</label></br>
     <input type="radio" id="c" name="io-second" value="c">
-    <label for="c">'Blue chip' stocks that pay dividends </label></br></br>
-    <input type="submit" value="Next Question">
+    <label for="c">'Blue chip' stocks that pay dividends </label><br><br><br>
+    <input type="submit" value="Next Question" class="button">
 </form>
-
+  </div>
+</div>
 {% endblock %}
