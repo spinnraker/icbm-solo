@@ -1,3 +1,5 @@
+from typing import List, Any
+
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 import json
 from icbm_code.calculations import time_horizon as th, \
@@ -13,10 +15,6 @@ user_score_th = th.TimeHorizon()
 user_score_io = io.InvestmentObjective()
 user_score_rp = rp.RiskProfile()
 user_score_esg = esg.EnvironmentalSocialGovernance()
-
-
-final_answers = []
-
 
 app = Flask(__name__)
 
@@ -45,6 +43,8 @@ def start():
 #     plt.pie(y)
 #     plt.show()
 #     return render_template("answers.html")
+final_answers: list[Any] = []
+
 
 @app.route("/time-horizon")
 def time_horizon():
@@ -153,16 +153,17 @@ def esg_fourth():
     final_answers.append(user_score_esg.get_cat())
     # value = user_score_esg.get_cat()
     # final_answers['ESG'] = value
-    return render_template("/results.html")  # point to answers.html, since no questions remain
+    print(final_answers)
+    return redirect("/results")  # point to answers.html, since no questions remain
     # return user_score_esg.esg_category
+
 
 @app.route("/results")
 def mix_calculator():
-    # user_mix.calculate_mix(final_answers[0], final_answers[2])
-    # print(user_mix.get_mix())
-    # return user_mix.get_mix()
-    horizon_answer = final_answers[0]
-    risk_answer = final_answers[2]
+    options = final_answers[:]
+    print(options)
+    horizon_answer = options[0]
+    risk_answer = options[2]
     if horizon_answer == "Short Term" and risk_answer == "Conservative":
         asset_mix = "Conservative"
     elif horizon_answer == "Short Term" and risk_answer == "Moderate":
@@ -184,20 +185,20 @@ def mix_calculator():
         asset_mix = "Balanced"
     elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
         asset_mix = "Aggressive"
-    # print(asset_mix)
+    print(asset_mix)
     # return asset_mix
-    # data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
-    #         'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
-    #         'Cash': 5}
+    data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
+            'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
+            'Cash': 5}
     # print(data)
-    # return render_template('pie-chart.html', data=data)
-    return render_template("answers.html")
+    return render_template('answers.html', data=data, asset_mix=asset_mix)
+    # return render_template("answers.html", asset_mix=asset_mix)
 
 
 @app.route('/pie')
 def google_pie_chart():
     data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
-            'International Equity': 5,'Fixed Income': 65, 'Alternatives': 5,
+            'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
             'Cash': 5}
     # print(data)
     return render_template('pie-chart.html', data=data)
