@@ -5,11 +5,6 @@ import json
 from icbm_code.calculations import time_horizon as th, \
     investment_objective as io, risk_profile as rp, esg
 
-# import matplotlib
-# matplotlib.use('Agg')
-# import matplotlib.plot as plt
-# import Bumpy as np
-
 # Instantiate classes
 user_score_th = th.TimeHorizon()
 user_score_io = io.InvestmentObjective()
@@ -18,31 +13,52 @@ user_score_esg = esg.EnvironmentalSocialGovernance()
 
 app = Flask(__name__)
 
+MIXES = [
+    {
+        #Conservative Mix
+        'Mixes': 'Percentages',
+        'Large Cap': 15,
+        'Mid-Cap': 5,
+        'International Equity': 5,
+        'Fixed Income': 65,
+        'Alternatives': 5,
+        'Cash': 5
+    },
+    {
+        # Balanced Mix
+        'Mixes': 'Percentages',
+        'Large Cap': 35,
+        'Mid-Cap': 10,
+        'International Equity': 10,
+        'Fixed Income': 35,
+        'Alternatives': 5,
+        'Cash': 5
+    },
+    {
+        # Aggressive Mix
+        'Mixes': 'Percentages',
+        'Large Cap': 50,
+        'Mid-Cap': 20,
+        'International Equity': 20,
+        'Fixed Income': 0,
+        'Alternatives': 5,
+        'Cash': 5
+    }
+]
+
 
 # Each question is on a separate page
 
 @app.route('/')  # What the user sees when visiting the site
 def index():
     return render_template("index.html")
-    # return redirect('/start')
 
 
 @app.route("/start")
 def start():
-    # return redirect('/time-horizon')
     return render_template("time-horizon.html")
 
 
-#
-# @app.route("/answers")
-# def start():
-#
-#     # Just need to replace these hard codes with our dynamics entries.
-#     y = np.array([35, 25, 25, 15])
-#
-#     plt.pie(y)
-#     plt.show()
-#     return render_template("answers.html")
 final_answers: list[Any] = []
 
 
@@ -51,19 +67,14 @@ def time_horizon():
     answer = request.args.get("time_horizon")
     user_score_th.set_time(answer)
     print(user_score_th.get_time())
-    # final_answers.append(user_score_th.get_time())
     final_answers.append(user_score_th.get_cat())
-    # value = user_score_th.get_cat()
-    # final_answers['Horizon'] = value
     return render_template('/io-first.html')
-    # return render_template("answers.html", answer=request.args.get("time_horizon"))
 
 
 @app.route("/io-first")
 def io_first():
     f_answer = request.args.get("io-first")
     user_score_io.calc_first_answer(f_answer)
-    # return render_template("answers.html", f_answer=request.args.get('io-first'))
     return render_template("/io-second.html")
 
 
@@ -117,8 +128,6 @@ def rp_fourth():
     user_score_rp.set_risk_score()
     print(user_score_rp.get_risk_category())
     final_answers.append(user_score_rp.get_cat())
-    # value = user_score_rp.get_cat()
-    # final_answers['Risk Tolerance'] = value
     return render_template("/esg-first.html")
 
 
@@ -149,13 +158,10 @@ def esg_fourth():
     esg4_answer = request.args.get("esg-fourth")
     user_score_esg.calc_fourth_answer(esg4_answer)
     user_score_esg.set_esg_cat()
-    print(user_score_esg.get_est_cat())  # GET function
+    print(user_score_esg.get_est_cat())
     final_answers.append(user_score_esg.get_cat())
-    # value = user_score_esg.get_cat()
-    # final_answers['ESG'] = value
     print(final_answers)
-    return redirect("/results")  # point to answers.html, since no questions remain
-    # return user_score_esg.esg_category
+    return redirect("/results")
 
 
 @app.route("/results")
@@ -186,20 +192,27 @@ def mix_calculator():
     elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
         asset_mix = "Aggressive"
     print(asset_mix)
-    # return asset_mix
-    data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
+    # data = {MIXES[0]} DIDN'T WORK
+
+    # SUPER TEMPORARY FIX
+    if asset_mix == "Conservative":
+        data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
             'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
             'Cash': 5}
-    # print(data)
+    elif asset_mix == "Balanced":
+        data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Small Cap': 10,
+                'International Equity': 10, 'Fixed Income': 35,
+                'Alternatives': 5,
+                'Cash': 5}
+    elif asset_mix == "Aggressive":
+        data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Small Cap': 20,
+                'International Equity': 20, 'Fixed Income': 0,
+                'Alternatives': 5,
+                'Cash': 5}
     return render_template('answers.html', data=data, asset_mix=asset_mix)
-    # return render_template("answers.html", asset_mix=asset_mix)
 
 
 @app.route('/pie')
 def google_pie_chart():
-    data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
-            'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
-            'Cash': 5}
-    # print(data)
+    data = {MIXES[1]}
     return render_template('pie-chart.html', data=data)
-    # return render_template('results.html')
