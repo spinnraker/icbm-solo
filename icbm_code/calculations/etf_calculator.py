@@ -43,24 +43,23 @@ class ETFCalculator:
         elif esg_category == "High" and objective == "Growth":
             self.etf_table = "esgGrowthDB"
 
-
     def get_table(self):
         return self.etf_table
 
 
 # This works
-# final_io.calc_first_answer('a')
-# final_io.calc_second_answer('c')
-# final_esg.calc_second_answer('e')
-# final_esg.calc_first_answer('e')
-# final_esg.calc_fourth_answer('e')
-# final_esg.calc_third_answer('e')
-#
-# final_esg.set_esg_cat()
-# final_io.set_objective()
-#
-# my_result = ETFCalculator()
-# my_result.set_etf_list()
-#
-# answer = my_result.get_table()
-# print(answer)
+final_io.calc_first_answer('a')
+final_io.calc_second_answer('c')
+final_esg.calc_second_answer('e')
+final_esg.calc_first_answer('e')
+final_esg.calc_fourth_answer('e')
+final_esg.calc_third_answer('e')
+
+final_esg.set_esg_cat()
+final_io.set_objective()
+
+my_result = ETFCalculator()
+my_result.set_etf_list()
+
+answer = my_result.get_table()
+print(answer)

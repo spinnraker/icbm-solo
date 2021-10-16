@@ -1,23 +1,31 @@
 {% extends 'layout.html' %}
 {% block body %}
-<h1>Risk Tolerance</h1>
+<!--<h1>Risk Tolerance</h1>-->
 <div class="split left">
     <div class="centered">
 <img src="{{url_for('static', filename='logo_3.png')}}"/>
-<h2>The price of your stocks has dropped by 31% in the last three weeks. What would you do?</h2>
+<h3>The price of your stocks has dropped by 31% in the last three weeks. What would you do?</h3>
+        </div>
 <!--        progress bar-->
 <div class="meter">
     <span style="width: 63%"></span>
-</div>
+
     </div>
 </div>
-<form name="rt-first" action="/rt-first" method="get">
-    <input type="radio" id="a" name="rt-first" value="a" required>
-        <label for="a">Sell the remaining stock, since seeing such a substantial price drop keeps you up at night. </label></br>
-    <input type="radio" id="b" name="rt-first" value="b">
+
+<div class="split right">
+    <div class="centered">
+<form name="rp-fourth" action="/rp-fourth" method="get">
+    <input type="radio" id="a" name="rp-fourth" value="a" required>
+        <label for="a">Sell the remaining stock, since seeing such a substantial price drop keeps you up at night.
+        </label></br>
+    <input type="radio" id="b" name="rp-fourth" value="b">
         <label for="b">Do nothing-- these things happen! </label></br>
-    <input type="radio" id="c" name="rt-first" value="c">
-        <label for="c">Buy more! A drop in price means you should purchase more shares while they're cheap. </label></br>
-    <input type="submit" value="Next Question">
+    <input type="radio" id="c" name="rp-fourth" value="c">
+        <label for="c">Buy the dip! A drop in price means you should purchase more shares while they're cheap. </label>
+    </br></br></br>
+    <input type="submit" value="Next Question" class="button">
 </form>
+
+    </div></div>
 {% endblock %}
