@@ -26,4 +26,5 @@ class TimeHorizon:
         else:
             print("You entered an invalid value.")
 
-
+    def get_cat(self):
+        return self.horizon_category

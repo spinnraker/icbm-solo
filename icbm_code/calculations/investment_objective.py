@@ -54,3 +54,6 @@ class InvestmentObjective:
         return f'\nInvestment Score: {self.objective_final_score} ' \
                f'\nInvestment objective: {self.objective}'
 
+    def get_cat(self):
+        return self.objective
+

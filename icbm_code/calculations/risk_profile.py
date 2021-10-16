@@ -85,6 +85,9 @@ class RiskProfile:
         return f'Risk Score: {self.risk_score} ' \
                f'\nRisk Category: {self.risk_category}'
 
+    def get_cat(self):
+        return self.risk_category
+
 
 # risk_test = RiskProfile()
 # risk_test.calc_first_answer('e')

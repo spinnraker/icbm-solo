@@ -95,6 +95,8 @@ class EnvironmentalSocialGovernance:
         return f'\nESG Score: {self.esg_score}' \
                f'\nESG category: {self.esg_category}'
 
+    def get_cat(self):
+        return self.esg_category
 
 
 # my_esg = EnvironmentalSocialGovernance()

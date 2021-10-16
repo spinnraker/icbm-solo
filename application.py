@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
+import json
 from icbm_code.calculations import time_horizon as th, \
     investment_objective as io, risk_profile as rp, esg
 
@@ -12,8 +13,9 @@ user_score_th = th.TimeHorizon()
 user_score_io = io.InvestmentObjective()
 user_score_rp = rp.RiskProfile()
 user_score_esg = esg.EnvironmentalSocialGovernance()
+# user_mix = mx.MixCalculator()
 
-final_answers = {}
+final_answers = []
 
 app = Flask(__name__)
 
@@ -49,7 +51,9 @@ def time_horizon():
     user_score_th.set_time(answer)
     print(user_score_th.get_time())
     # final_answers.append(user_score_th.get_time())
-    final_answers['Horizon'] = user_score_th.get_time()
+    final_answers.append(user_score_th.get_cat())
+    # value = user_score_th.get_cat()
+    # final_answers['Horizon'] = value
     return render_template('/io-first.html')
     # return render_template("answers.html", answer=request.args.get("time_horizon"))
 
@@ -75,7 +79,9 @@ def io_second():  # create new function, and named it the same as the route
     print(
         user_score_io.get_objective())  # After calling SET function, call the GET function
     # final_answers.append(user_score_io.get_objective())
-    final_answers['Investment Objective'] = user_score_io.get_objective()
+    final_answers.append(user_score_io.get_cat())
+    # value = user_score_io.get_cat()
+    # final_answers['Investment Objective'] = value
     return render_template(
         "/rp-first.html")  # point to the next question, then go to that HTML page file under templates and create a new form.
     # Repeat the process with as many questions as needed. Once you create all the
@@ -109,7 +115,9 @@ def rp_fourth():
     user_score_rp.calc_fourth_answer(rp4_answer)
     user_score_rp.set_risk_score()
     print(user_score_rp.get_risk_category())
-    final_answers['Risk Tolerance'] = user_score_rp.get_risk_category()
+    final_answers.append(user_score_rp.get_cat())
+    # value = user_score_rp.get_cat()
+    # final_answers['Risk Tolerance'] = value
     return render_template("/esg-first.html")
 
 
@@ -141,10 +149,43 @@ def esg_fourth():
     user_score_esg.calc_fourth_answer(esg4_answer)
     user_score_esg.set_esg_cat()
     print(user_score_esg.get_est_cat())  # GET function
-    final_answers['ESG'] = user_score_esg.get_est_cat()
+    final_answers.append(user_score_esg.get_cat())
+    # value = user_score_esg.get_cat()
+    # final_answers['ESG'] = value
     return render_template("/answers.html")  # point to answers.html, since no questions remain
 
 
-@app.route("/api")
-def show_results():
-    return jsonify(final_answers)
+@app.route("/results")
+def mix_calculator():
+    # user_mix.calculate_mix(final_answers[0], final_answers[2])
+    # print(user_mix.get_mix())
+    # return user_mix.get_mix()
+    horizon_answer = final_answers[0]
+    risk_answer = final_answers[2]
+    if horizon_answer == "Short Term" and risk_answer == "Conservative":
+        asset_mix = "Conservative"
+    elif horizon_answer == "Short Term" and risk_answer == "Moderate":
+        asset_mix = "Conservative"
+    elif horizon_answer == "Short Term" and risk_answer == "Aggressive":
+        asset_mix = "Balanced"
+    elif horizon_answer == "Intermediate Term" and \
+            risk_answer == "Conservative":
+        asset_mix = "Conservative"
+    elif horizon_answer == "Intermediate Term" and \
+            risk_answer == "Moderate":
+        asset_mix = "Balanced"
+    elif horizon_answer == "Intermediate Term" and \
+            risk_answer == "Aggressive":
+        asset_mix = "Aggressive"
+    elif horizon_answer == "Long Term" and risk_answer == "Conservative":
+        asset_mix = "Balanced"
+    elif horizon_answer == "Long Term" and risk_answer == "Moderate":
+        asset_mix = "Balanced"
+    elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
+        asset_mix = "Aggressive"
+    print(asset_mix)
+    return asset_mix
+
+    # print(user_score_esg.get_cat())
+    # print(final_answers)
+    # return jsonify(final_answers)
