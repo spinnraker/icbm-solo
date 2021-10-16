@@ -1,4 +1,23 @@
 {% extends 'layout.html' %}
 {% block body %}
-
+<h1>Risk Tolerance</h1>
+<div class="split left">
+    <div class="centered">
+<img src="{{url_for('static', filename='logo_3.png')}}"/>
+<h2>How would you describe your approach toward investing?</h2>
+<!--        progress bar-->
+<div class="meter">
+    <span style="width: 54%"></span>
+</div>
+    </div>
+</div>
+<form name="rt-first" action="/rt-first" method="get">
+    <input type="radio" id="a" name="rt-first" value="a" required>
+        <label for="a">I am uncomfortable with volatility. Lower rates of return are acceptable in exchange for stable portfolio values. </label></br>
+    <input type="radio" id="b" name="rt-first" value="b">
+        <label for="b">I expect a minor fluctuation in the value of my investments. I am willing to accept periodic, small losses in my portfolio, but I want my returns to be competitive in the long-term. </label></br>
+    <input type="radio" id="c" name="rt-first" value="c">
+        <label for="c">I am comfortable seeing the value of my investments fluctuate as much or even more than the stock market. During some years, I might have a loss, but over time I expect my returns to be at least as high as the historical return of stocks. </label></br>
+    <input type="submit" value="Next Question">
+</form>
 {% endblock %}
