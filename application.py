@@ -13,9 +13,10 @@ user_score_th = th.TimeHorizon()
 user_score_io = io.InvestmentObjective()
 user_score_rp = rp.RiskProfile()
 user_score_esg = esg.EnvironmentalSocialGovernance()
-# user_mix = mx.MixCalculator()
+
 
 final_answers = []
+
 
 app = Flask(__name__)
 
@@ -152,8 +153,8 @@ def esg_fourth():
     final_answers.append(user_score_esg.get_cat())
     # value = user_score_esg.get_cat()
     # final_answers['ESG'] = value
-    return render_template("/answers.html")  # point to answers.html, since no questions remain
-
+    return render_template("/results.html")  # point to answers.html, since no questions remain
+    # return user_score_esg.esg_category
 
 @app.route("/results")
 def mix_calculator():
@@ -183,9 +184,21 @@ def mix_calculator():
         asset_mix = "Balanced"
     elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
         asset_mix = "Aggressive"
-    print(asset_mix)
-    return asset_mix
+    # print(asset_mix)
+    # return asset_mix
+    # data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
+    #         'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
+    #         'Cash': 5}
+    # print(data)
+    # return render_template('pie-chart.html', data=data)
+    return render_template("answers.html")
 
-    # print(user_score_esg.get_cat())
-    # print(final_answers)
-    # return jsonify(final_answers)
+
+@app.route('/pie')
+def google_pie_chart():
+    data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
+            'International Equity': 5,'Fixed Income': 65, 'Alternatives': 5,
+            'Cash': 5}
+    # print(data)
+    return render_template('pie-chart.html', data=data)
+    # return render_template('results.html')
