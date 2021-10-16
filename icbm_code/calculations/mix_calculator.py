@@ -45,17 +45,19 @@ class MixCalculator:
     def get_mix(self):
         return self.asset_mix
 
-final_th.set_time('c')
-final_rp.calc_first_answer('c')
-final_rp.calc_second_answer('c')
-final_rp.calc_third_answer('c')
-final_rp.calc_fourth_answer('c')
 
-final_rp.set_risk_score()
-
-my_mix = MixCalculator()
-my_mix.calculate_mix()
-
-print(my_mix.get_mix())
-
+# This works
+# final_th.set_time('c')
+# final_rp.calc_first_answer('c')
+# final_rp.calc_second_answer('c')
+# final_rp.calc_third_answer('c')
+# final_rp.calc_fourth_answer('c')
+#
+# final_rp.set_risk_score()
+#
+# my_mix = MixCalculator()
+# my_mix.calculate_mix()
+#
+# print(my_mix.get_mix())
+#
 

@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 from icbm_code.calculations import time_horizon as th, \
     investment_objective as io, risk_profile as rp, esg
+import matplotlib
+matplotlib.use('Agg')
+ import matplotlib.plot as plt
+ import Bumpy as np
 
 # Instantiate classes
 user_score_th = th.TimeHorizon()
@@ -25,6 +29,15 @@ def start():
     # return redirect('/time-horizon')
     return render_template("time-horizon.html")
 
+@app.route("/answers")
+def start():
+
+    # Just need to replace these hard codes with our dynamics entries.
+    y = np.array([35, 25, 25, 15])
+
+    plt.pie(y)
+    plt.show()
+    return render_template("answers.html")
 
 @app.route("/time-horizon")
 def time_horizon():
