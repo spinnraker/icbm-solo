@@ -1,7 +1,25 @@
 {% extends 'layout.html' %}
 {% block body %}
-
-
-
-
+<h1>Risk Tolerance</h1>
+<div class="split left">
+    <div class="centered">
+<img src="{{url_for('static', filename='logo_3.png')}}"/>
+<h2>If you had $10,000 to invest for ten years, which portfolio would you prefer?</h2>
+<!--        progress bar-->
+<div class="meter">
+    <span style="width: 45%"></span>
+</div>
+    </div>
+</div>
+<form name="rt-first" action="/rt-first" method="get">
+    <input type="radio" id="a" name="rt-first" value="a" required>
+        <label for="a">Low risk/lowreturn. A portfolio that may grow 2-3% per year but is likely to lose 2-5% in one of those years. </label></br>
+    <input type="radio" id="b" name="rt-first" value="b">
+        <label for="b">Some risk/ medium return. A portfolio that may grow at an average of 4% per year but is likely to lose 10% in one of those years. </label></br>
+    <input type="radio" id="c" name="rt-first" value="c">
+        <label for="c">Higher risk/return. A porfolio that may grow an average of 6% per year but is likely to lose 20% in one of those years. </label></br>
+    <input type="radio" id="d" name="rt-first" value="d">
+        <label for="d">Highest risk/highest return. A portfolio that may grow at an average of 7% per year but is likely to lose 25% in at least one of those years. </label></br>
+    <input type="submit" value="Next Question">
+</form>
 {% endblock %}
