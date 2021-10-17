@@ -1,8 +1,11 @@
 {% extends 'layout.html' %}
 {% block body %}
 <div class="split left">
+     <div class="logo">
+        <img src="{{url_for('static', filename='logo_3.png')}}"/>
+    </div>
     <div class="centered">
-<img src="{{url_for('static', filename='logo_3.png')}}"/>
+
 <!--<h1>Risk Tolerance</h1>-->
 <!--        <h2>Question 3</h2>-->
 <h3>Which scenario are you most comfortable with:</h3>

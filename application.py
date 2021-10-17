@@ -13,38 +13,38 @@ user_score_esg = esg.EnvironmentalSocialGovernance()
 
 app = Flask(__name__)
 
-MIXES = [
-    {
-        #Conservative Mix
-        'Mixes': 'Percentages',
-        'Large Cap': 15,
-        'Mid-Cap': 5,
-        'International Equity': 5,
-        'Fixed Income': 65,
-        'Alternatives': 5,
-        'Cash': 5
-    },
-    {
-        # Balanced Mix
-        'Mixes': 'Percentages',
-        'Large Cap': 35,
-        'Mid-Cap': 10,
-        'International Equity': 10,
-        'Fixed Income': 35,
-        'Alternatives': 5,
-        'Cash': 5
-    },
-    {
-        # Aggressive Mix
-        'Mixes': 'Percentages',
-        'Large Cap': 50,
-        'Mid-Cap': 20,
-        'International Equity': 20,
-        'Fixed Income': 0,
-        'Alternatives': 5,
-        'Cash': 5
-    }
-]
+Conservative_Mix = {
+
+    'Mixes': 'Percentages',
+    'Large Cap': 15,
+    'Mid-Cap': 5,
+    'International Equity': 5,
+    'Fixed Income': 65,
+    'Alternatives': 5,
+    'Cash': 5
+}
+Balanced_Mix = {
+    'Mixes': 'Percentages',
+    'Large Cap': 35,
+    'Mid-Cap': 10,
+    'International Equity': 10,
+    'Fixed Income': 35,
+    'Alternatives': 5,
+    'Cash': 5
+}
+Aggressive_Mix = {
+    'Mixes': 'Percentages',
+    'Large Cap': 50,
+    'Mid-Cap': 20,
+    'International Equity': 20,
+    'Fixed Income': 0,
+    'Alternatives': 5,
+    'Cash': 5
+}
+MIXES = [json.dumps(Conservative_Mix),json.dumps(Balanced_Mix),
+         json.dumps(Aggressive_Mix)]
+
+set(MIXES)
 
 
 # Each question is on a separate page
@@ -170,6 +170,7 @@ def mix_calculator():
     print(options)
     horizon_answer = options[0]
     risk_answer = options[2]
+    # Determine which asset mix category user falls under
     if horizon_answer == "Short Term" and risk_answer == "Conservative":
         asset_mix = "Conservative"
     elif horizon_answer == "Short Term" and risk_answer == "Moderate":
@@ -191,28 +192,30 @@ def mix_calculator():
         asset_mix = "Balanced"
     elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
         asset_mix = "Aggressive"
-    print(asset_mix)
-    # data = {MIXES[0]} DIDN'T WORK
+    print(asset_mix)  #Not needed on final version
 
-    # SUPER TEMPORARY FIX
+    # Determine percentage mix based on Mix Category
+
+    # SUPER TEMPORARY FIX - want to get values from a list of dic
     if asset_mix == "Conservative":
-        data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Small Cap': 5,
-            'International Equity': 5, 'Fixed Income': 65, 'Alternatives': 5,
-            'Cash': 5}
+        data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
+                'International Equity': 5, 'Fixed Income': 65,
+                'Alternatives': 5,
+                'Cash': 5}
     elif asset_mix == "Balanced":
-        data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Small Cap': 10,
+        data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10,
                 'International Equity': 10, 'Fixed Income': 35,
                 'Alternatives': 5,
                 'Cash': 5}
     elif asset_mix == "Aggressive":
-        data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Small Cap': 20,
+        data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
                 'International Equity': 20, 'Fixed Income': 0,
                 'Alternatives': 5,
                 'Cash': 5}
     return render_template('answers.html', data=data, asset_mix=asset_mix)
 
-
-@app.route('/pie')
-def google_pie_chart():
-    data = {MIXES[1]}
-    return render_template('pie-chart.html', data=data)
+#Not using this for now
+# @app.route('/pie')
+# def google_pie_chart():
+#     data = {MIXES[1]}
+#     return render_template('pie-chart.html', data=data)
