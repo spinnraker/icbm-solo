@@ -212,7 +212,12 @@ def mix_calculator():
                 'International Equity': 20, 'Fixed Income': 0,
                 'Alternatives': 5,
                 'Cash': 5}
-    return render_template('answers.html', data=data, asset_mix=asset_mix)
+
+    #TEMPORARY WHILE WE BUILD THE DATABASE
+    user_esg = final_answers[3]
+    user_io = final_answers[1]
+    return render_template('answers.html', data=data, asset_mix=asset_mix,
+                           user_esg=user_esg, user_io=user_io)
 
 #Not using this for now
 # @app.route('/pie')
