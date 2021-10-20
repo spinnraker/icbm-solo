@@ -220,7 +220,10 @@ def mix_calculator():
                            user_esg=user_esg, user_io=user_io)
 
 #Not using this for now
-# @app.route('/pie')
-# def google_pie_chart():
-#     data = {MIXES[1]}
-#     return render_template('pie-chart.html', data=data)
+@app.route('/pie')
+def google_pie_chart():
+    data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
+                'International Equity': 20, 'Fixed Income': 0,
+                'Alternatives': 5,
+                'Cash': 5}
+    return render_template('pie-chart.html', data=data)

@@ -18,6 +18,13 @@
         var options = {
           title: 'Asset Mix',
           is3D: false,
+          pieSliceText: 'Percentages',
+          slices: { 0: {offset: 0.15 }
+<!--            if ('Percentage' > 30) {-->
+<!--            slices: {'Percentage': {offset: 0.15 }-->
+<!--            }-->
+<!--            }-->
+          },
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -36,7 +43,8 @@
 <div class="split right">
     <div class="centered">
 
-
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+	</div>
 
 	</div></div>
 {% endblock %}
