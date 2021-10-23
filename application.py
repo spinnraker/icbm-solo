@@ -3,13 +3,14 @@ from flask import Flask, render_template, request, redirect, jsonify, url_for
 from flask_pymongo import PyMongo
 from icbm_code.calculations import time_horizon as th, \
     investment_objective as io, risk_profile as rp, esg, database as db
-# from pymongo import MongoClient
-#
-# cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+
+from pymongo import MongoClient
+cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+
 # db = cluster["ICBM"]
 # collection = db["ETF"]
-#
-# results = collection.find({"type": "Value", "style": "ESG"})
+
+# results = collection.find({"type": "Value", "style": "Non-ESG"})
 #
 # for results in results:
 #     print(results["ticker"])
@@ -225,10 +226,19 @@ def mix_calculator():
     user_esg = final_answers[3]
     user_io = final_answers[1]
 
+    # TESTING DB ***** PASSING A VARIABLE INSTEAD OF HARD-CODED VALUE
+    db = cluster["ICBM"]
+    collection = db["ETF"]
+    results = collection.find({"type": etf_type, "style": etf_style})
+
+    for results in results:
+        ticker = results["ticker"]
+
     print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=user_esg, user_io=user_io,
-                           etf_style=etf_style, etf_type=etf_type)
+                           etf_style=etf_style, etf_type=etf_type, ticker=ticker)
+# ticker=ticker
 
 
 @app.route("/api")
