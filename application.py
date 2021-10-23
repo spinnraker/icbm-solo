@@ -142,8 +142,6 @@ def esg_fourth():
 
 @app.route("/results")
 def mix_calculator():
-    # options = final_answers[:]
-    # print(options)
     for_api = []
     horizon_answer = final_answers[0]
     objective_answer = final_answers[1]
@@ -227,7 +225,6 @@ def mix_calculator():
     user_esg = final_answers[3]
     user_io = final_answers[1]
 
-    # print(options)
     print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=user_esg, user_io=user_io,
