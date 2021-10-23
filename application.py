@@ -1,9 +1,19 @@
 from typing import List, Any
-
 from flask import Flask, render_template, request, redirect, jsonify, url_for
-import json
+from flask_pymongo import PyMongo
 from icbm_code.calculations import time_horizon as th, \
-    investment_objective as io, risk_profile as rp, esg
+    investment_objective as io, risk_profile as rp, esg, database as db
+# from pymongo import MongoClient
+#
+# cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+# db = cluster["ICBM"]
+# collection = db["ETF"]
+#
+# results = collection.find({"type": "Value", "style": "ESG"})
+#
+# for results in results:
+#     print(results["ticker"])
+
 
 # Instantiate classes
 user_score_th = th.TimeHorizon()
@@ -12,43 +22,10 @@ user_score_rp = rp.RiskProfile()
 user_score_esg = esg.EnvironmentalSocialGovernance()
 
 app = Flask(__name__)
-
-Conservative_Mix = {
-
-    'Mixes': 'Percentages',
-    'Large Cap': 15,
-    'Mid-Cap': 5,
-    'International Equity': 5,
-    'Fixed Income': 65,
-    'Alternatives': 5,
-    'Cash': 5
-}
-Balanced_Mix = {
-    'Mixes': 'Percentages',
-    'Large Cap': 35,
-    'Mid-Cap': 10,
-    'International Equity': 10,
-    'Fixed Income': 35,
-    'Alternatives': 5,
-    'Cash': 5
-}
-Aggressive_Mix = {
-    'Mixes': 'Percentages',
-    'Large Cap': 50,
-    'Mid-Cap': 20,
-    'International Equity': 20,
-    'Fixed Income': 0,
-    'Alternatives': 5,
-    'Cash': 5
-}
-MIXES = [json.dumps(Conservative_Mix),json.dumps(Balanced_Mix),
-         json.dumps(Aggressive_Mix)]
-
-set(MIXES)
-
+# app.config["MONGO_URI"] = "mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net"
+# mongo = PyMongo(app)
 
 # Each question is on a separate page
-
 @app.route('/')  # What the user sees when visiting the site
 def index():
     return render_template("index.html")
@@ -60,7 +37,6 @@ def start():
 
 
 final_answers: list[Any] = []
-
 
 @app.route("/time-horizon")
 def time_horizon():
@@ -166,10 +142,14 @@ def esg_fourth():
 
 @app.route("/results")
 def mix_calculator():
-    options = final_answers[:]
-    print(options)
-    horizon_answer = options[0]
-    risk_answer = options[2]
+    # options = final_answers[:]
+    # print(options)
+    for_api = []
+    horizon_answer = final_answers[0]
+    objective_answer = final_answers[1]
+    risk_answer = final_answers[2]
+    esg_answer = final_answers[3]
+
     # Determine which asset mix category user falls under
     if horizon_answer == "Short Term" and risk_answer == "Conservative":
         asset_mix = "Conservative"
@@ -192,10 +172,9 @@ def mix_calculator():
         asset_mix = "Balanced"
     elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
         asset_mix = "Aggressive"
-    print(asset_mix)  #Not needed on final version
+    print(asset_mix)  # Not needed on final version
 
     # Determine percentage mix based on Mix Category
-
     # SUPER TEMPORARY FIX - want to get values from a list of dic
     if asset_mix == "Conservative":
         data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
@@ -212,18 +191,91 @@ def mix_calculator():
                 'International Equity': 20, 'Fixed Income': 0,
                 'Alternatives': 5,
                 'Cash': 5}
+    # Determine which ETFs to pull from database
+    if esg_answer == "Low":
+        for_api.append("Non-ESG")
+        if objective_answer == "Income":
+            for_api.append("Value")
+        elif objective_answer == "Balanced":
+            for_api.append("Balanced")
+        elif objective_answer == "Growth":
+            for_api.append('Growth')
+        # This portion needs to be updated once we figure out how to show both
+    elif esg_answer == "Medium":
+        for_api.append("ESG")
+        if objective_answer == "Income":
+            for_api.append("Value")
+        elif objective_answer == "Balanced":
+            for_api.append("Balanced")
+        elif objective_answer == "Growth":
+            for_api.append("Growth")
+    elif esg_answer == "High":
+        for_api.append("ESG")
+        if objective_answer == "Income":
+            for_api.append("Value")
+        elif objective_answer == "Balanced":
+            for_api.append("Balanced")
+        elif objective_answer == "Growth":
+            for_api.append("Growth")
+    else:
+        for_api.append("No style")
+        for_api.append("No type")
 
-    #TEMPORARY WHILE WE BUILD THE DATABASE
+    # TEMPORARY WHILE WE BUILD THE DATABASE
+    etf_style = for_api[0]
+    etf_type = for_api[1]
     user_esg = final_answers[3]
     user_io = final_answers[1]
-    return render_template('answers.html', data=data, asset_mix=asset_mix,
-                           user_esg=user_esg, user_io=user_io)
 
-#Not using this for now
-@app.route('/pie')
-def google_pie_chart():
-    data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
-                'International Equity': 20, 'Fixed Income': 0,
-                'Alternatives': 5,
-                'Cash': 5}
-    return render_template('pie-chart.html', data=data)
+    # print(options)
+    print(final_answers)
+    return render_template('answers.html', data=data, asset_mix=asset_mix,
+                           user_esg=user_esg, user_io=user_io,
+                           etf_style=etf_style, etf_type=etf_type)
+
+
+@app.route("/api")
+def etf_cal():
+    objective_answer = final_answers[1]
+    esg_answer = final_answers[3]
+    for_api = []
+
+    if esg_answer == "Low":
+        for_api.append("Non-ESG")
+        if objective_answer == "Income":
+            for_api.append("Value")
+        elif objective_answer == "Balanced":
+            for_api.append("Balanced")
+        elif objective_answer == "Growth":
+            for_api.append('Growth')
+        # This portion needs to be updated once we figure out how to show both
+    elif esg_answer == "Medium":
+        for_api.append("ESG")
+        if objective_answer == "Income":
+            for_api.append("Value")
+        elif objective_answer == "Balanced":
+            for_api.append("Balanced")
+        elif objective_answer == "Growth":
+            for_api.append("Growth")
+    elif esg_answer == "High":
+        for_api.append("ESG")
+        if objective_answer == "Income":
+            for_api.append("Value")
+        elif objective_answer == "Balanced":
+            for_api.append("Balanced")
+        elif objective_answer == "Growth":
+            for_api.append("Growth")
+    else:
+        for_api.append("No style")
+        for_api.append("No type")
+
+    return jsonify(list(for_api))
+
+# Not using this for now
+# @app.route('/pie')
+# def google_pie_chart():
+#     data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
+#                 'International Equity': 20, 'Fixed Income': 0,
+#                 'Alternatives': 5,
+#                 'Cash': 5}
+#     return render_template('pie-chart.html', data=data)
