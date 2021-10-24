@@ -229,16 +229,15 @@ def mix_calculator():
     # TESTING DB ***** PASSING A VARIABLE INSTEAD OF HARD-CODED VALUE
     db = cluster["ICBM"]
     collection = db["ETF"]
-    results = collection.find({"type": etf_type, "style": etf_style})
-
-    for results in results:
-        ticker = results["ticker"]
+    ETFS = collection.find({"type": etf_type, "style": etf_style})
+    tickers = []
+    for result in ETFS:
+        tickers.append(result['ticker'])
 
     print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=user_esg, user_io=user_io,
-                           etf_style=etf_style, etf_type=etf_type, ticker=ticker)
-# ticker=ticker
+                           etf_style=etf_style, etf_type=etf_type, results=tickers)
 
 
 @app.route("/api")
