@@ -220,24 +220,25 @@ def mix_calculator():
         for_api.append("No style")
         for_api.append("No type")
 
-    # TEMPORARY WHILE WE BUILD THE DATABASE
+    # Get etf style and etf type
     etf_style = for_api[0]
     etf_type = for_api[1]
     user_esg = final_answers[3]
     user_io = final_answers[1]
 
-    # TESTING DB ***** PASSING A VARIABLE INSTEAD OF HARD-CODED VALUE
+    # Dynamically gets the value from the DB
     db = cluster["ICBM"]
     collection = db["ETF"]
     ETFS = collection.find({"type": etf_type, "style": etf_style})
-    tickers = []
+    tickers = [] # List that will hold the ticker symbols
     for result in ETFS:
         tickers.append(result['ticker'])
 
     print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=user_esg, user_io=user_io,
-                           etf_style=etf_style, etf_type=etf_type, results=tickers)
+                           etf_style=etf_style, etf_type=etf_type,
+                           results=tickers)
 
 
 @app.route("/api")
@@ -285,3 +286,8 @@ def etf_cal():
 #                 'Alternatives': 5,
 #                 'Cash': 5}
 #     return render_template('pie-chart.html', data=data)
+
+
+# @app_route("/test")
+# def testing_page:
+#
