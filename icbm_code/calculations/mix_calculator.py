@@ -1,4 +1,4 @@
-import time_horizon as th
+import time_risk_mix_calc as th
 import risk_profile as rp
 
 final_th = th.TimeHorizon()

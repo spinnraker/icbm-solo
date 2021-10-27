@@ -1,6 +1,6 @@
-import time_horizon as th
+import time_risk_mix_calc as th
 import investment_objective as io
-import esg
+import esg_inv_objective_etf_calc
 
 # Program asks users a series of questions to determine which
 # securities to suggests (educational purpose ONLY)
@@ -44,7 +44,7 @@ user_score_io.calc_second_answer(answer_3)
 user_score_io.set_objective()
 
 # Determines ESG category
-user_score_esg = esg.EnvironmentalSocialGovernance()# Initialize esg instance
+user_score_esg = esg_inv_objective_etf_calc.EnvironmentalSocialGovernance()# Initialize esg instance
 
 question_4 = "\nQuestion 4: "
 question_4 += "\nWhen it comes to investing, Environmental issues such as " \

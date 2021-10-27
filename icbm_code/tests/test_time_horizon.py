@@ -1,9 +1,9 @@
 import unittest
-from icbm_code.calculations.time_horizon import TimeHorizon
+from icbm_code.calculations.time_risk_mix_calc import TimeHorizon
 
 
 class TestTimeHorizon(unittest.TestCase):
-    """Tests for time_horizon.py"""
+    """Tests for time_risk_mix_calc.py"""
 
     def setUp(self):
         self.th = TimeHorizon()

@@ -1,9 +1,9 @@
 import unittest
-from icbm_code.calculations.esg import EnvironmentalSocialGovernance
+from icbm_code.calculations.esg_inv_objective_etf_calc import EnvironmentalSocialGovernance
 
 
 class TestESG(unittest.TestCase):
-    """Test for esg.py"""
+    """Test for esg_inv_objective_etf_calc.py"""
 
     def setUp(self) -> None:
         self.esg = EnvironmentalSocialGovernance()

@@ -1,8 +1,9 @@
 from typing import List, Any
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 from flask_pymongo import PyMongo
-from icbm_code.calculations import time_horizon as th, \
-    investment_objective as io, risk_profile as rp, esg, database as db
+from icbm_code.calculations import time_risk_mix_calc as mx, \
+    investment_objective as io, risk_profile as rp, esg_inv_objective_etf_calc \
+    as etf
 
 from pymongo import MongoClient
 cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
@@ -13,14 +14,16 @@ cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mong
 # results = collection.find({"type": "Value", "style": "Non-ESG"})
 #
 # for results in results:
-#     print(results["ticker"])
+#     print(results["ticker"])++++++++++++++++++
 
 
 # Instantiate classes
-user_score_th = th.TimeHorizon()
-user_score_io = io.InvestmentObjective()
-user_score_rp = rp.RiskProfile()
-user_score_esg = esg.EnvironmentalSocialGovernance()
+user_score_th = mx.TimeRiskMixCalculator()
+user_score_io = etf.ESGInvestmentObjectiveETFCalculator()
+user_score_rp = mx.TimeRiskMixCalculator()
+user_score_esg = etf.ESGInvestmentObjectiveETFCalculator()
+final_mix = mx.TimeRiskMixCalculator()
+final_etf = etf.ESGInvestmentObjectiveETFCalculator()
 
 app = Flask(__name__)
 # app.config["MONGO_URI"] = "mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net"
@@ -44,7 +47,7 @@ def time_horizon():
     answer = request.args.get("time_horizon")
     user_score_th.set_time(answer)
     print(user_score_th.get_time())
-    final_answers.append(user_score_th.get_cat())
+    final_answers.append(user_score_th.get_th_cat())
     return render_template('/io-first.html')
 
 
@@ -104,7 +107,7 @@ def rp_fourth():
     user_score_rp.calc_fourth_answer(rp4_answer)
     user_score_rp.set_risk_score()
     print(user_score_rp.get_risk_category())
-    final_answers.append(user_score_rp.get_cat())
+    final_answers.append(user_score_rp.get_risk_cat())
     return render_template("/esg-first.html")
 
 
@@ -135,43 +138,23 @@ def esg_fourth():
     esg4_answer = request.args.get("esg-fourth")
     user_score_esg.calc_fourth_answer(esg4_answer)
     user_score_esg.set_esg_cat()
-    print(user_score_esg.get_est_cat())
-    final_answers.append(user_score_esg.get_cat())
+    print(user_score_esg.get_esg_cat())
+    final_answers.append(user_score_esg.get_esg_cat())
     print(final_answers)
     return redirect("/results")
 
 
 @app.route("/results")
 def mix_calculator():
-    for_api = []
     horizon_answer = final_answers[0]
     objective_answer = final_answers[1]
     risk_answer = final_answers[2]
     esg_answer = final_answers[3]
-
-    # Determine which asset mix category user falls under
-    if horizon_answer == "Short Term" and risk_answer == "Conservative":
-        asset_mix = "Conservative"
-    elif horizon_answer == "Short Term" and risk_answer == "Moderate":
-        asset_mix = "Conservative"
-    elif horizon_answer == "Short Term" and risk_answer == "Aggressive":
-        asset_mix = "Balanced"
-    elif horizon_answer == "Intermediate Term" and \
-            risk_answer == "Conservative":
-        asset_mix = "Conservative"
-    elif horizon_answer == "Intermediate Term" and \
-            risk_answer == "Moderate":
-        asset_mix = "Balanced"
-    elif horizon_answer == "Intermediate Term" and \
-            risk_answer == "Aggressive":
-        asset_mix = "Aggressive"
-    elif horizon_answer == "Long Term" and risk_answer == "Conservative":
-        asset_mix = "Balanced"
-    elif horizon_answer == "Long Term" and risk_answer == "Moderate":
-        asset_mix = "Balanced"
-    elif horizon_answer == "Long Term" and risk_answer == "Aggressive":
-        asset_mix = "Aggressive"
+    final_mix.calculate_mix(horizon_answer, risk_answer)
+    final_etf.select_etfs(esg_answer, objective_answer)
+    asset_mix = final_mix.get_mix()
     print(asset_mix)  # Not needed on final version
+
 
     # Determine percentage mix based on Mix Category
     # SUPER TEMPORARY FIX - want to get values from a list of dic
@@ -190,53 +173,24 @@ def mix_calculator():
                 'International Equity': 20, 'Fixed Income': 0,
                 'Alternatives': 5,
                 'Cash': 5}
-    # Determine which ETFs to pull from database
-    if esg_answer == "Low":
-        for_api.append("Non-ESG")
-        if objective_answer == "Income":
-            for_api.append("Value")
-        elif objective_answer == "Balanced":
-            for_api.append("Balanced")
-        elif objective_answer == "Growth":
-            for_api.append('Growth')
-        # This portion needs to be updated once we figure out how to show both
-    elif esg_answer == "Medium":
-        for_api.append("ESG")
-        if objective_answer == "Income":
-            for_api.append("Value")
-        elif objective_answer == "Balanced":
-            for_api.append("Balanced")
-        elif objective_answer == "Growth":
-            for_api.append("Growth")
-    elif esg_answer == "High":
-        for_api.append("ESG")
-        if objective_answer == "Income":
-            for_api.append("Value")
-        elif objective_answer == "Balanced":
-            for_api.append("Balanced")
-        elif objective_answer == "Growth":
-            for_api.append("Growth")
-    else:
-        for_api.append("No style")
-        for_api.append("No type")
 
-    # Get etf style and etf type
-    etf_style = for_api[0]
-    etf_type = for_api[1]
-    user_esg = final_answers[3]
-    user_io = final_answers[1]
+
+    etf_style = final_etf.get_etf_style()
+    etf_type = final_etf.get_etf_type()
+    print(etf_type)
+    print(etf_style)
 
     # Dynamically gets the value from the DB
     db = cluster["ICBM"]
     collection = db["ETF"]
-    ETFS = collection.find({"type": etf_type, "style": etf_style})
+    etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = [] # List that will hold the ticker symbols
-    for result in ETFS:
+    for result in etfs:
         tickers.append(result['ticker'])
 
     print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
-                           user_esg=user_esg, user_io=user_io,
+                           user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
                            results=tickers)
 

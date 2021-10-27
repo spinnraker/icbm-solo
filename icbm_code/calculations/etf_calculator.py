@@ -1,10 +1,10 @@
 # # Goal: Create function that determines which ETFs to show based on investment
 # objective and ESG preference
 
-import esg
+import esg_inv_objective_etf_calc
 import investment_objective as io
 
-final_esg = esg.EnvironmentalSocialGovernance()
+final_esg = esg_inv_objective_etf_calc.EnvironmentalSocialGovernance()
 final_io = io.InvestmentObjective()
 
 
