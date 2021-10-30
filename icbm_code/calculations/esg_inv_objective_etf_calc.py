@@ -184,7 +184,7 @@ class ESGInvestmentObjectiveETFCalculator:
             self.etf_style = "ESG"
             self.etf_type = "Value"
         elif esg_category == "High" and objective == "Balanced":
-            self.etf_style = "Balanced"
+            self.etf_style = "ESG"
             self.etf_type = "Growth"
         elif esg_category == "High" and objective == "Growth":
             self.etf_style = "ESG"

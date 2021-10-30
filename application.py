@@ -1,9 +1,7 @@
-from typing import List, Any
-from flask import Flask, render_template, request, redirect, jsonify, url_for
-from flask_pymongo import PyMongo
+from typing import Any
+from flask import Flask, render_template, request, redirect, jsonify
 from icbm_code.calculations import time_risk_mix_calc as mx, \
-    investment_objective as io, risk_profile as rp, esg_inv_objective_etf_calc \
-    as etf
+    esg_inv_objective_etf_calc as etf
 
 from pymongo import MongoClient
 cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
@@ -25,24 +23,24 @@ user_score_esg = etf.ESGInvestmentObjectiveETFCalculator()
 final_mix = mx.TimeRiskMixCalculator()
 final_etf = etf.ESGInvestmentObjectiveETFCalculator()
 
-app = Flask(__name__)
+application = Flask(__name__)
 # app.config["MONGO_URI"] = "mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net"
 # mongo = PyMongo(app)
 
 # Each question is on a separate page
-@app.route('/')  # What the user sees when visiting the site
+@application.route('/', methods=['GET', 'POST'])  # What the user sees when visiting the site
 def index():
     return render_template("index.html")
 
 
-@app.route("/start")
+@application.route("/start")
 def start():
     return render_template("time-horizon.html")
 
 
 final_answers: list[Any] = []
 
-@app.route("/time-horizon")
+@application.route("/time-horizon")
 def time_horizon():
     answer = request.args.get("time_horizon")
     user_score_th.set_time(answer)
@@ -51,7 +49,7 @@ def time_horizon():
     return render_template('/io-first.html')
 
 
-@app.route("/io-first")
+@application.route("/io-first")
 def io_first():
     f_answer = request.args.get("io-first")
     user_score_io.calc_first_answer(f_answer)
@@ -60,7 +58,7 @@ def io_first():
 
 # How to create new routes or pages:
 
-@app.route(
+@application.route(
     "/io-second")  # Name of the route will is whatever the last render_template (right above) shows
 def io_second():  # create new function, and named it the same as the route
     s_answer = request.args.get(
@@ -80,28 +78,28 @@ def io_second():  # create new function, and named it the same as the route
     # questions for a category (risk profile, esg, etc.) move to the next category
 
 
-@app.route("/rp-first")
+@application.route("/rp-first")
 def rp_first():
     rp1_answer = request.args.get("rp-first")
     user_score_rp.calc_first_answer(rp1_answer)
     return render_template("/rp-second.html")
 
 
-@app.route("/rp-second")
+@application.route("/rp-second")
 def rp_second():
     rp2_answer = request.args.get("rp-second")
     user_score_rp.calc_second_answer(rp2_answer)
     return render_template("/rp-third.html")
 
 
-@app.route("/rp-third")
+@application.route("/rp-third")
 def rp_third():
     rp3_answer = request.args.get("rp-third")
     user_score_rp.calc_third_answer(rp3_answer)
     return render_template("/rp-fourth.html")
 
 
-@app.route("/rp-fourth")
+@application.route("/rp-fourth")
 def rp_fourth():
     rp4_answer = request.args.get("rp-fourth")
     user_score_rp.calc_fourth_answer(rp4_answer)
@@ -111,7 +109,7 @@ def rp_fourth():
     return render_template("/esg-first.html")
 
 
-@app.route("/esg-first")
+@application.route("/esg-first")
 def esg_first():
     esg1_answer = request.args.get("esg-first")
     user_score_esg.calc_first_answer(esg1_answer)
@@ -119,21 +117,21 @@ def esg_first():
     return render_template("/esg-second.html")
 
 
-@app.route("/esg-second")
+@application.route("/esg-second")
 def esg_second():
     esg2_answer = request.args.get("esg-second")
     user_score_esg.calc_second_answer(esg2_answer)
     return render_template("/esg-third.html")
 
 
-@app.route("/esg-third")
+@application.route("/esg-third")
 def esg_third():
     esg3_answer = request.args.get("esg-third")
     user_score_esg.calc_third_answer(esg3_answer)
     return render_template("/esg-fourth.html")
 
 
-@app.route("/esg-fourth")
+@application.route("/esg-fourth")
 def esg_fourth():
     esg4_answer = request.args.get("esg-fourth")
     user_score_esg.calc_fourth_answer(esg4_answer)
@@ -144,7 +142,7 @@ def esg_fourth():
     return redirect("/results")
 
 
-@app.route("/results")
+@application.route("/results")
 def mix_calculator():
     horizon_answer = final_answers[0]
     objective_answer = final_answers[1]
@@ -174,7 +172,6 @@ def mix_calculator():
                 'Alternatives': 5,
                 'Cash': 5}
 
-
     etf_style = final_etf.get_etf_style()
     etf_type = final_etf.get_etf_type()
     print(etf_type)
@@ -189,48 +186,51 @@ def mix_calculator():
         tickers.append(result['ticker'])
 
     print(final_answers)
+    final_answers.clear()
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
                            results=tickers)
 
 
-@app.route("/api")
-def etf_cal():
-    objective_answer = final_answers[1]
-    esg_answer = final_answers[3]
-    for_api = []
-
-    if esg_answer == "Low":
-        for_api.append("Non-ESG")
-        if objective_answer == "Income":
-            for_api.append("Value")
-        elif objective_answer == "Balanced":
-            for_api.append("Balanced")
-        elif objective_answer == "Growth":
-            for_api.append('Growth')
-        # This portion needs to be updated once we figure out how to show both
-    elif esg_answer == "Medium":
-        for_api.append("ESG")
-        if objective_answer == "Income":
-            for_api.append("Value")
-        elif objective_answer == "Balanced":
-            for_api.append("Balanced")
-        elif objective_answer == "Growth":
-            for_api.append("Growth")
-    elif esg_answer == "High":
-        for_api.append("ESG")
-        if objective_answer == "Income":
-            for_api.append("Value")
-        elif objective_answer == "Balanced":
-            for_api.append("Balanced")
-        elif objective_answer == "Growth":
-            for_api.append("Growth")
-    else:
-        for_api.append("No style")
-        for_api.append("No type")
-
-    return jsonify(list(for_api))
+if __name__ == '__main__':
+    application.run(debug=True)
+# @application.route("/api")
+# def etf_cal():
+#     objective_answer = final_answers[1]
+#     esg_answer = final_answers[3]
+#     for_api = []
+#
+#     if esg_answer == "Low":
+#         for_api.append("Non-ESG")
+#         if objective_answer == "Income":
+#             for_api.append("Value")
+#         elif objective_answer == "Balanced":
+#             for_api.append("Balanced")
+#         elif objective_answer == "Growth":
+#             for_api.append('Growth')
+#         # This portion needs to be updated once we figure out how to show both
+#     elif esg_answer == "Medium":
+#         for_api.append("ESG")
+#         if objective_answer == "Income":
+#             for_api.append("Value")
+#         elif objective_answer == "Balanced":
+#             for_api.append("Balanced")
+#         elif objective_answer == "Growth":
+#             for_api.append("Growth")
+#     elif esg_answer == "High":
+#         for_api.append("ESG")
+#         if objective_answer == "Income":
+#             for_api.append("Value")
+#         elif objective_answer == "Balanced":
+#             for_api.append("Balanced")
+#         elif objective_answer == "Growth":
+#             for_api.append("Growth")
+#     else:
+#         for_api.append("No style")
+#         for_api.append("No type")
+#
+#     return jsonify(list(for_api))
 
 # Not using this for now
 # @app.route('/pie')
