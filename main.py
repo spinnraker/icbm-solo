@@ -1,4 +1,3 @@
-from typing import Any
 from flask import Flask, render_template, request, redirect, jsonify
 from icbm_code.calculations import time_risk_mix_calc as mx, \
     esg_inv_objective_etf_calc as etf
@@ -23,24 +22,25 @@ user_score_esg = etf.ESGInvestmentObjectiveETFCalculator()
 final_mix = mx.TimeRiskMixCalculator()
 final_etf = etf.ESGInvestmentObjectiveETFCalculator()
 
-application = Flask(__name__)
+final_answers = []
+
+app = Flask(__name__)
 # app.config["MONGO_URI"] = "mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net"
 # mongo = PyMongo(app)
 
 # Each question is on a separate page
-@application.route('/', methods=['GET', 'POST'])  # What the user sees when visiting the site
+@app.route('/', methods=['GET', 'POST'])  # What the user sees when visiting the site
 def index():
     return render_template("index.html")
 
 
-@application.route("/start")
+@app.route("/start")
 def start():
     return render_template("time-horizon.html")
 
 
-final_answers: list[Any] = []
 
-@application.route("/time-horizon")
+@app.route("/time-horizon")
 def time_horizon():
     answer = request.args.get("time_horizon")
     user_score_th.set_time(answer)
@@ -49,7 +49,7 @@ def time_horizon():
     return render_template('/io-first.html')
 
 
-@application.route("/io-first")
+@app.route("/io-first")
 def io_first():
     f_answer = request.args.get("io-first")
     user_score_io.calc_first_answer(f_answer)
@@ -58,7 +58,7 @@ def io_first():
 
 # How to create new routes or pages:
 
-@application.route(
+@app.route(
     "/io-second")  # Name of the route will is whatever the last render_template (right above) shows
 def io_second():  # create new function, and named it the same as the route
     s_answer = request.args.get(
@@ -78,28 +78,28 @@ def io_second():  # create new function, and named it the same as the route
     # questions for a category (risk profile, esg, etc.) move to the next category
 
 
-@application.route("/rp-first")
+@app.route("/rp-first")
 def rp_first():
     rp1_answer = request.args.get("rp-first")
     user_score_rp.calc_first_answer(rp1_answer)
     return render_template("/rp-second.html")
 
 
-@application.route("/rp-second")
+@app.route("/rp-second")
 def rp_second():
     rp2_answer = request.args.get("rp-second")
     user_score_rp.calc_second_answer(rp2_answer)
     return render_template("/rp-third.html")
 
 
-@application.route("/rp-third")
+@app.route("/rp-third")
 def rp_third():
     rp3_answer = request.args.get("rp-third")
     user_score_rp.calc_third_answer(rp3_answer)
     return render_template("/rp-fourth.html")
 
 
-@application.route("/rp-fourth")
+@app.route("/rp-fourth")
 def rp_fourth():
     rp4_answer = request.args.get("rp-fourth")
     user_score_rp.calc_fourth_answer(rp4_answer)
@@ -109,7 +109,7 @@ def rp_fourth():
     return render_template("/esg-first.html")
 
 
-@application.route("/esg-first")
+@app.route("/esg-first")
 def esg_first():
     esg1_answer = request.args.get("esg-first")
     user_score_esg.calc_first_answer(esg1_answer)
@@ -117,21 +117,21 @@ def esg_first():
     return render_template("/esg-second.html")
 
 
-@application.route("/esg-second")
+@app.route("/esg-second")
 def esg_second():
     esg2_answer = request.args.get("esg-second")
     user_score_esg.calc_second_answer(esg2_answer)
     return render_template("/esg-third.html")
 
 
-@application.route("/esg-third")
+@app.route("/esg-third")
 def esg_third():
     esg3_answer = request.args.get("esg-third")
     user_score_esg.calc_third_answer(esg3_answer)
     return render_template("/esg-fourth.html")
 
 
-@application.route("/esg-fourth")
+@app.route("/esg-fourth")
 def esg_fourth():
     esg4_answer = request.args.get("esg-fourth")
     user_score_esg.calc_fourth_answer(esg4_answer)
@@ -142,7 +142,7 @@ def esg_fourth():
     return redirect("/results")
 
 
-@application.route("/results")
+@app.route("/results")
 def mix_calculator():
     horizon_answer = final_answers[0]
     objective_answer = final_answers[1]
@@ -194,7 +194,11 @@ def mix_calculator():
 
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app.
+    app.run(host='127.0.0.1', port=8080, debug=True)
+# [END gae_flex_quickstart]
+
 # @application.route("/api")
 # def etf_cal():
 #     objective_answer = final_answers[1]
