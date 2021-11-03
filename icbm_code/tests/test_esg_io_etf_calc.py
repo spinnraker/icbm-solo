@@ -1,12 +1,13 @@
 import unittest
-from icbm_code.calculations.esg_inv_objective_etf_calc import EnvironmentalSocialGovernance
+from icbm_code.calculations.esg_inv_objective_etf_calc import ESGInvestmentObjectiveETFCalculator
 
 
 class TestESG(unittest.TestCase):
     """Test for esg_inv_objective_etf_calc.py"""
 
     def setUp(self) -> None:
-        self.esg = EnvironmentalSocialGovernance()
+        self.esg = ESGInvestmentObjectiveETFCalculator()
+        self.io = ESGInvestmentObjectiveETFCalculator()
 
     def test_esg_first_q_a(self):
         """Test passing value 'a' and returning esg score of 1"""
@@ -168,6 +169,114 @@ class TestESG(unittest.TestCase):
         self.assertNotEqual(self.esg.esg_category, "Low")
         self.assertNotEqual(self.esg.esg_category, "Medium")
 
+
+# Unit tests to verify scores
+    def test_set_io_first_question_a(self):
+        """Test passing value 'a' and returning io score of 1"""
+        self.io.calc_io_first_answer('a')
+        self.assertIs(self.io.io_first_answer_score, 1)
+        self.assertIsNot(self.io.io_first_answer_score, 2)
+
+    def test_set_io_first_question_b(self):
+        """Test passing value 'b' and returning io score of 2"""
+        self.io.calc_io_first_answer('b')
+        self.assertIs(self.io.io_first_answer_score, 2)
+        self.assertIsNot(self.io.io_first_answer_score, 3)
+
+    def test_set_io_first_question_c(self):
+        """Test passing value 'c' and returning io score of 3"""
+        self.io.calc_io_first_answer('c')
+        self.assertIs(self.io.io_first_answer_score, 3)
+        self.assertIsNot(self.io.io_first_answer_score, 4)
+
+    def test_set_io_first_question_d(self):
+        """Test passing value 'd' and returning io score of 4"""
+        self.io.calc_io_first_answer('d')
+        self.assertIs(self.io.io_first_answer_score, 4)
+        self.assertIsNot(self.io.io_first_answer_score, 3)
+
+    def test_io_set_second_question_a(self):
+        """Test passing value 'a' and returning io score of 5"""
+        self.io.calc_io_second_answer('a')
+        self.assertIs(self.io.io_second_answer_score, 5)
+        self.assertIsNot(self.io.io_second_answer_score, 3)
+
+    def test_io_set_second_question_b(self):
+        """Test passing value 'b' and returning io score of 3"""
+        self.io.calc_io_second_answer('b')
+        self.assertIs(self.io.io_second_answer_score, 3)
+        self.assertIsNot(self.io.io_second_answer_score, 1)
+
+    def test_io_second_question_c(self):
+        """Test passing value 'c' and returning io score of 1"""
+        self.io.calc_io_second_answer('c')
+        self.assertIs(self.io.io_second_answer_score, 1)
+        self.assertIsNot(self.io.io_second_answer_score, 3)
+
+    # Unit tests to verify categories
+    def test_io_set_objective_less_4(self):
+        """Test for scores less than 4"""
+        self.io.io_first_answer_score = 1
+        self.io.io_second_answer_score = 2
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Income")
+        self.assertNotEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Growth")
+
+    def test_io_set_objective_4(self):
+        """Test for scores equal to 4"""
+        self.io.io_first_answer_score = 3
+        self.io.io_second_answer_score = 1
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Income")
+        self.assertIsNot(self.io.objective, "Growth")
+        self.assertIsNot(self.io.objective, "Balanced")
+
+    def test_io_set_objective_5(self):
+        """Test for scores equal to 5"""
+        self.io.io_first_answer_score = 2
+        self.io.io_second_answer_score = 3
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Income")
+        self.assertNotEqual(self.io.objective, "Growth")
+
+    def test_io_set_objective_6(self):
+        """Test for scores equal to 6"""
+        self.io.io_first_answer_score = 3
+        self.io.io_second_answer_score = 3
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Growth")
+        self.assertNotEqual(self.io.objective, "Income")
+
+    def test_io_set_objective_7(self):
+        """Test for scores greater than 6"""
+        self.io.io_first_answer_score = 2
+        self.io.io_second_answer_score = 5
+        self.io.set_objective()
+        self.assertEqual(self.io.objective, "Growth")
+        self.assertNotEqual(self.io.objective, "Balanced")
+        self.assertNotEqual(self.io.objective, "Income")
+
+# ETF Calculator tests
+    def test_select_etfs_non_esg_value(self):
+        """Tests for Low ESG and Income - Investment Objective(IO)"""
+        self.esg.select_etfs("Low", "Income")
+        self.assertEqual(self.esg.etf_style, "Non-ESG")
+        self.assertEqual(self.esg.etf_type, "Value")
+
+    def test_select_etfs_non_esg_balanced(self):
+        """Tests for Low ESG and balanced - IO"""
+        self.esg.select_etfs("Low", 'Balanced')
+        self.assertEqual(self.esg.etf_style, "Non-ESG")
+        self.assertEqual(self.esg.etf_type, "Balanced")
+
+    def test_select_etfs_non_esg_growth(self):
+        """Tests for LOW ESG and Growth - IO"""
+        self.esg.select_etfs("Low", "Growth")
+        self.assertEqual(self.esg.etf_style, "Non-ESG")
+        self.assertEqual(self.esg.etf_type, "Growth")
 
 if __name__ == '__main__':
     unittest.main()

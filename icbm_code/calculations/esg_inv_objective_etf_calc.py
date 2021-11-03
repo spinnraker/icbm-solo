@@ -113,34 +113,34 @@ class ESGInvestmentObjectiveETFCalculator:
     def calc_io_first_answer(self, first_answer):
         """Assigns a value to first investment objective question"""
         if first_answer == 'a':
-            self.first_answer_score = 1
+            self.io_first_answer_score = 1
         elif first_answer == 'b':
-            self.first_answer_score = 2
+            self.io_first_answer_score = 2
         elif first_answer == 'c':
-            self.first_answer_score = 3
+            self.io_first_answer_score = 3
         elif first_answer == 'd':
-            self.first_answer_score = 4
+            self.io_first_answer_score = 4
         elif first_answer == 'e':
-            self.first_answer_score = 5
+            self.io_first_answer_score = 5
         else:
             print('You entered an invalid value')
-        return self.first_answer_score
+        return self.io_first_answer_score
 
     def calc_io_second_answer(self, second_answer):
         """Assigns a value to second investment objective question"""
         if second_answer == 'a':
-            self.second_answer_score = 5
+            self.io_second_answer_score = 5
         elif second_answer == 'b':
-            self.second_answer_score = 3
+            self.io_second_answer_score = 3
         elif second_answer == 'c':
-            self.second_answer_score = 1
+            self.io_second_answer_score = 1
         else:
             print("You entered an invalid value")
-        return self.second_answer_score
+        return self.io_second_answer_score
 
     def set_objective(self):
         """Assigns investment objective based on user's input"""
-        final_score = self.first_answer_score + self.second_answer_score
+        final_score = self.io_first_answer_score + self.io_second_answer_score
         if final_score <= 4:
             self.objective = "Income"
         elif (final_score == 5) or (final_score <= 6):
@@ -197,12 +197,19 @@ class ESGInvestmentObjectiveETFCalculator:
         return self.etf_type
 
 
-# my_esg = EnvironmentalSocialGovernance()
+# my_esg = ESGInvestmentObjectiveETFCalculator()
+# my_io = ESGInvestmentObjectiveETFCalculator()
 # one = my_esg.calc_first_answer('e')
 # two = my_esg.calc_second_answer('e')
 # three = my_esg.calc_third_answer('e')
 # four = my_esg.calc_fourth_answer('e')
 #
+# uno = my_io.calc_io_first_answer('a')
+# dos = my_io.calc_io_second_answer('b')
+# my_io.set_objective()
+# totalis = my_io.get_objective()
+#
 # my_esg.set_esg_cat()
-# total = my_esg.get_est_cat()
+# total = my_esg.get_esg_cat()
 # print(total)
+# print(totalis)
