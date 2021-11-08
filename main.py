@@ -52,7 +52,7 @@ def time_horizon():
 @app.route("/io-first")
 def io_first():
     f_answer = request.args.get("io-first")
-    user_score_io.calc_first_answer(f_answer)
+    user_score_io.calc_io_first_answer(f_answer)
     return render_template("/io-second.html")
 
 
@@ -63,7 +63,7 @@ def io_first():
 def io_second():  # create new function, and named it the same as the route
     s_answer = request.args.get(
         "io-second")  # create variable that will hold the user's answers
-    user_score_io.calc_second_answer(
+    user_score_io.calc_io_second_answer(
         s_answer)  # Pass that variable to the function that calculates the score
     user_score_io.set_objective()  # Once you reach the last question of a category, call the SET function
     print(
@@ -183,8 +183,9 @@ def mix_calculator():
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = [] # List that will hold the ticker symbols
     for result in etfs:
-        tickers.append(result['ticker'])
+        tickers.append(result['name'])
 
+    print("Final results")
     print(final_answers)
     final_answers.clear()
     return render_template('answers.html', data=data, asset_mix=asset_mix,
