@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, jsonify
+from flask import Flask, render_template, request, redirect, jsonify, url_for
 from icbm_code.calculations import time_risk_mix_calc as mx, \
     esg_inv_objective_etf_calc as etf
 
@@ -182,8 +182,14 @@ def mix_calculator():
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = [] # List that will hold the ticker symbols
+    # for result in etfs:
+    #     tickers.append(result['name'])
+
+    # NEW
+    urls = []
     for result in etfs:
-        tickers.append(result['name'])
+        urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['ticker']) + "&outputsize=1" )
+
 
     print("Final results")
     print(final_answers)
@@ -191,7 +197,61 @@ def mix_calculator():
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
-                           results=tickers)
+                           results=tickers, urls=urls)
+
+
+@app.route("/test")
+def testing_api():
+    test_etf = []
+    user_score_th.set_time('a')
+    test_etf.append(user_score_th.get_th_cat())
+    user_score_rp.calc_first_answer('a')
+    user_score_rp.calc_second_answer('a')
+    user_score_rp.calc_third_answer('a')
+    user_score_rp.calc_fourth_answer('a')
+    user_score_th.set_risk_score()
+    test_etf.append(user_score_th.get_risk_cat())
+    # user_score_th.calculate_mix()
+    user_score_th.get_mix()
+    user_score_io.calc_io_first_answer('e')
+    user_score_io.calc_io_second_answer('a')
+    user_score_io.set_objective()
+    test_etf.append(user_score_io.get_cat())
+    user_score_esg.calc_first_answer('e')
+    user_score_esg.calc_second_answer('e')
+    user_score_esg.calc_third_answer('e')
+    user_score_esg.calc_fourth_answer('e')
+    user_score_esg.set_esg_cat()
+    test_etf.append(user_score_esg.get_esg_cat())
+    objective_answer = test_etf[2]
+
+    esg_answer = test_etf[3]
+    final_etf.select_etfs(esg_answer, objective_answer)
+    asset_mix = final_mix.get_mix()
+    print(test_etf)  # Not needed on final version
+    #from here
+    etf_style = final_etf.get_etf_style()
+    etf_type = final_etf.get_etf_type()
+    db = cluster["ICBM"]
+    collection = db["ETF"]
+    etfs = collection.find({"type": etf_type, "style": etf_style})
+    tickers = []  # List that will hold the ticker symbols
+    # for result in etfs:
+    #     tickers.append(result['name'])
+
+    # NEW
+    urls = []
+    for result in etfs:
+        urls.append(
+            "https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(
+                result['ticker']) + "&outputsize=1")
+
+    print("Final results")
+    print(final_answers)
+    final_answers.clear()
+    return render_template('api-test.html', urls=urls)
+
+
 
 
 if __name__ == '__main__':
@@ -237,16 +297,3 @@ if __name__ == '__main__':
 #
 #     return jsonify(list(for_api))
 
-# Not using this for now
-# @app.route('/pie')
-# def google_pie_chart():
-#     data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
-#                 'International Equity': 20, 'Fixed Income': 0,
-#                 'Alternatives': 5,
-#                 'Cash': 5}
-#     return render_template('pie-chart.html', data=data)
-
-
-# @app_route("/test")
-# def testing_page:
-#
