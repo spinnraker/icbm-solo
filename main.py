@@ -38,7 +38,9 @@ def index():
 def start():
     return render_template("time-horizon.html")
 
-
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 @app.route("/time-horizon")
 def time_horizon():
