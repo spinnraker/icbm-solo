@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block body %}
+<!--<h1>About</h1>-->
+<div class="split left">
+    <div class="logo">
+        <img src="{{url_for('static', filename='logo_3.png')}}"/>
+    </div>
+    <div class="centered">
+        <!--<img src="{{url_for('static', filename='logo_3.png')}}"/>-->
+        <h3>The ICBM Investing tool is designed to recommend a general investing strategy that is personalized for your needs.
+            It analyzes the same broad criteria used by most financial advisors-- time horizon, investment objectives, and risk tolerance.
+            what makes the ICBM tool unique is it's added emphasis on ESG investing (Environmental, Social, Governance) that ensures is recommendations
+            align with your personal ethics. The ICBM tool also exclusively recommends ETFs (Exchange-Traded Funds), which are generally more stable than stocks.
+            it is also important to note that the ICBM tool is not backed by any certified financial advice, and is intended merely as a guidance tool.</h3>
+    </div>
+</div>
+
+<div class="split right"/>
+<div class="centered"/>
+
+{% endblock %}
