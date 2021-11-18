@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 from icbm_code.calculations import time_risk_mix_calc as mx, \
     esg_inv_objective_etf_calc as etf
-
+from twelvedata import TDClient
 from pymongo import MongoClient
 cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+
+
+# Twelvedata API key
+td = TDClient(apikey="8f91b729c73c4b57b3ceb054ee727a2f")
 
 # db = cluster["ICBM"]
 # collection = db["ETF"]
@@ -182,14 +186,19 @@ def mix_calculator():
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = [] # List that will hold the ticker symbols
-    # for result in etfs:
-    #     tickers.append(result['name'])
+    for result in etfs:
+        tickers.append(result['ticker'])
 
     # NEW
-    urls = []
-    for result in etfs:
-        urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['ticker']) + "&outputsize=1" )
+    # urls = []
+    # for result in etfs:
+    #     urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['ticker']) + "&outputsize=1" )
 
+    ts = td.time_series(
+        symbol=tickers,
+        interval="1day",
+        outputsize=1
+    )
 
     print("Final results")
     print(final_answers)
@@ -202,6 +211,7 @@ def mix_calculator():
 
 @app.route("/test")
 def testing_api():
+    print("Start")
     test_etf = []
     user_score_th.set_time('a')
     test_etf.append(user_score_th.get_th_cat())
@@ -214,7 +224,7 @@ def testing_api():
     # user_score_th.calculate_mix()
     user_score_th.get_mix()
     user_score_io.calc_io_first_answer('c')
-    user_score_io.calc_io_second_answer('c')
+    user_score_io.calc_io_second_answer('a')
     user_score_io.set_objective()
     test_etf.append(user_score_io.get_cat())
     user_score_esg.calc_first_answer('e')
@@ -223,8 +233,8 @@ def testing_api():
     user_score_esg.calc_fourth_answer('e')
     user_score_esg.set_esg_cat()
     test_etf.append(user_score_esg.get_esg_cat())
+    print("Done")
     objective_answer = test_etf[2]
-
     esg_answer = test_etf[3]
     final_etf.select_etfs(esg_answer, objective_answer)
     asset_mix = final_mix.get_mix()
@@ -232,24 +242,36 @@ def testing_api():
     #from here
     etf_style = final_etf.get_etf_style()
     etf_type = final_etf.get_etf_type()
+    print("DB")
     db = cluster["ICBM"]
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = []  # List that will hold the ticker symbols
-    # for result in etfs:
-    #     tickers.append(result['name'])
+    for result in etfs:
+        tickers.append(result['ticker'])
+    print(tickers)
+    ts = td.time_series(
+        symbol=tickers,
+        interval="1day",
+        outputsize=1
+    )
 
+    print(ts.as_json())
     # NEW
     urls = []
-    for result in etfs:
-        urls.append(
-            "https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(
-                result['ticker']) + "&outputsize=1")
+    # for result in etfs:
+    #     urls.append(
+    #         "https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(
+    #             result['ticker']) + "&outputsize=1")
 
     print("Final results")
-    print(final_answers)
-    final_answers.clear()
+    print(test_etf)
+    test_etf.clear()
+    print("Clear")
+    print(test_etf)
+    print(urls)
     return render_template('api-test.html', urls=urls)
+
 
 
 
@@ -259,41 +281,4 @@ if __name__ == '__main__':
     # Engine, a webserver process such as Gunicorn will serve the app.
     app.run(host='127.0.0.1', port=8080, debug=True)
 # [END gae_flex_quickstart]
-
-# @application.route("/api")
-# def etf_cal():
-#     objective_answer = final_answers[1]
-#     esg_answer = final_answers[3]
-#     for_api = []
-#
-#     if esg_answer == "Low":
-#         for_api.append("Non-ESG")
-#         if objective_answer == "Income":
-#             for_api.append("Value")
-#         elif objective_answer == "Balanced":
-#             for_api.append("Balanced")
-#         elif objective_answer == "Growth":
-#             for_api.append('Growth')
-#         # This portion needs to be updated once we figure out how to show both
-#     elif esg_answer == "Medium":
-#         for_api.append("ESG")
-#         if objective_answer == "Income":
-#             for_api.append("Value")
-#         elif objective_answer == "Balanced":
-#             for_api.append("Balanced")
-#         elif objective_answer == "Growth":
-#             for_api.append("Growth")
-#     elif esg_answer == "High":
-#         for_api.append("ESG")
-#         if objective_answer == "Income":
-#             for_api.append("Value")
-#         elif objective_answer == "Balanced":
-#             for_api.append("Balanced")
-#         elif objective_answer == "Growth":
-#             for_api.append("Growth")
-#     else:
-#         for_api.append("No style")
-#         for_api.append("No type")
-#
-#     return jsonify(list(for_api))
 
