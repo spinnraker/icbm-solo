@@ -208,6 +208,10 @@ def mix_calculator():
                            etf_style=etf_style, etf_type=etf_type,
                            results=tickers, urls=urls)
 
+@app.template_filter()
+def currencyFormat(value):
+    value = float(value)
+    return "${:,.2f}".format(value)
 
 @app.route("/test")
 def testing_api():
@@ -238,10 +242,12 @@ def testing_api():
     esg_answer = test_etf[3]
     final_etf.select_etfs(esg_answer, objective_answer)
     asset_mix = final_mix.get_mix()
+
     print(test_etf)  # Not needed on final version
     #from here
     etf_style = final_etf.get_etf_style()
     etf_type = final_etf.get_etf_type()
+
     print("DB")
     db = cluster["ICBM"]
     collection = db["ETF"]
@@ -250,13 +256,30 @@ def testing_api():
     for result in etfs:
         tickers.append(result['ticker'])
     print(tickers)
-    ts = td.time_series(
-        symbol=tickers,
+
+    # This works!
+    # ts = td.time_series(
+    #     symbol=tickers,
+    #     interval="1day",
+    #     outputsize=1
+    # )
+
+    single = td.time_series(
+        symbol="VTI",
         interval="1day",
-        outputsize=1
+        outputsize=1,
     )
 
-    print(ts.as_json())
+    print("Single ETF)")
+    single_eft = []
+    single_eft = list(single.as_json())
+    del single_eft[0]['datetime']
+    del single_eft[0]['volume']
+    print("List of etfs")
+    testing_dics = []
+    # print(ts.as_json())
+    # testing_dics = list(ts.as_json())
+    print(testing_dics)
     # NEW
     urls = []
     # for result in etfs:
@@ -269,8 +292,9 @@ def testing_api():
     test_etf.clear()
     print("Clear")
     print(test_etf)
-    print(urls)
-    return render_template('api-test.html', urls=urls)
+    # print(urls)
+    return render_template('api-test.html', urls=urls,
+                           single_eft=single_eft)
 
 
 
