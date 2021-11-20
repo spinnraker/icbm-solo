@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
+import requests
+import json
+from ast import literal_eval
 from icbm_code.calculations import time_risk_mix_calc as mx, \
     esg_inv_objective_etf_calc as etf
 from twelvedata import TDClient
@@ -189,16 +192,12 @@ def mix_calculator():
     for result in etfs:
         tickers.append(result['symbol'])
 
-    # NEW
-    # urls = []
-    # for result in etfs:
-    #     urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['ticker']) + "&outputsize=1" )
 
-    ts = td.time_series(
-        symbol=tickers,
-        interval="1day",
-        outputsize=1
-    )
+    # ts = td.time_series(
+    #     symbol=tickers,
+    #     interval="1day",
+    #     outputsize=1
+    # )
 
     print("Final results")
     print(final_answers)
@@ -206,7 +205,7 @@ def mix_calculator():
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
-                           results=tickers, urls=urls)
+                           results=tickers)
 
 @app.template_filter()
 def currencyFormat(value):
@@ -227,8 +226,8 @@ def testing_api():
     test_etf.append(user_score_th.get_risk_cat())
     # user_score_th.calculate_mix()
     user_score_th.get_mix()
-    user_score_io.calc_io_first_answer('a')
-    user_score_io.calc_io_second_answer('c')
+    user_score_io.calc_io_first_answer('c')
+    user_score_io.calc_io_second_answer('a')
     user_score_io.set_objective()
     test_etf.append(user_score_io.get_cat())
     user_score_esg.calc_first_answer('e')
@@ -252,12 +251,13 @@ def testing_api():
     db = cluster["ICBM"]
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
+
     tickers = []  # List that will hold the ticker symbols
     for result in etfs:
         tickers.append(result['symbol'])
     print(tickers)
 
-    print("HERE")
+    # print("batch api calls 1")
     another_api = []
     for symbol in tickers:
         current = td.time_series(
@@ -266,15 +266,18 @@ def testing_api():
             outputsize=1
         )
         another_api.append(current.as_json())
+        print(another_api)
+        print("Making it a list")
         list(another_api)
     print(another_api)
 
-    print("TRY THIS")
+    # print("TRY THIS")
     # for meta_data in another_api:
     #     for symbol in meta_data:
     #         for key, value in symbol.items():
     #             print(f'{key}: {value}')
     #
+    # This is what I'm using
     only_dics = []
     for meta_data in another_api:
         print("metadata")
@@ -289,6 +292,7 @@ def testing_api():
 
 
     # This works!
+    # print("default batch api code")
     # ts = td.time_series(
     #     symbol=tickers,
     #     interval="1day",
@@ -315,8 +319,11 @@ def testing_api():
     testing_dics = []
     # print("TS.AS.JSON")
     # print(ts.as_json())
+    # print(type(ts))
     # api_calls =[]
     # api_calls.append(ts)
+    # print("api calls")
+    # print(api_calls)
     # testing_dics = list(ts.as_json())
     # print("testing_dics")
     # print(testing_dics)
@@ -325,14 +332,71 @@ def testing_api():
     # for call in api_calls:
     #     print(call)
 
-    print("Final results")
-    print(test_etf)
-    test_etf.clear()
-    print("Clear")
-    print(test_etf)
-    # print(urls)
-    return render_template('api-test.html', only_dics=only_dics, tickers=tickers)
+    # url_vti="https://api.twelvedata.com/time_series?symbol=VTI&interval=1min&apikey=8f91b729c73c4b57b3ceb054ee727a2f&outputsize=1"
+    # url_iwf="https://api.twelvedata.com/time_series?symbol=IWF&interval=1min&apikey=8f91b729c73c4b57b3ceb054ee727a2f&outputsize=1"
+    # testing_vti = requests.get(url_vti)
+    # testing_iwf = requests.get(url_iwf)
+    # print("VTI: " + testing_vti.text)
+    # print("IWF: " + testing_iwf.text)
 
+    # Making calls manually works!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # print("Making calls manually")
+    # urls_list = []
+    # api_data = []
+    # for result in tickers:
+    #     urls_list.append(
+    #         "https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + result + "&outputsize=1")
+    # print("urls_list")
+    # print(urls_list)
+    #
+    # for url in urls_list:
+    #     api_data.append(requests.get(url))
+    # print("api_data")
+    # print(api_data)
+    #
+    # print("DOES THIS WORK?!?!")
+    # json_data = []
+    # for data in api_data:
+    #     json_data.append(data.text)
+    # print(json_data)
+    # print("Type")
+    # print(type(json_data))
+
+
+    # for value in json_data:
+    #     print('value')
+    #     print(value)
+    #     print(type(value))
+    #     print("change")
+    #     json.loads(value)
+    #     print(type(value))
+    #
+    # def convert(a):
+    #     it = iter(a)
+    #     res_dct = dict(zip(it, it))
+    #     return res_dct
+    # print('result after function')
+    # new_data = convert(json_data)
+    # print(new_data)
+    # print(type(new_data))
+    #
+    # print("Values are: ")
+    # for value in new_data:
+    #     literal_eval(value)
+    #     print(type(value))
+
+
+
+
+    # print("Removed meta?")
+    # print(json_data)
+
+
+    test_etf.clear()
+
+    # print(urls)
+    return render_template('api-test.html', tickers=tickers,
+                           only_dics=only_dics)
 
 
 
