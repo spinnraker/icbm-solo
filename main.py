@@ -187,7 +187,7 @@ def mix_calculator():
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = [] # List that will hold the ticker symbols
     for result in etfs:
-        tickers.append(result['ticker'])
+        tickers.append(result['symbol'])
 
     # NEW
     # urls = []
@@ -227,8 +227,8 @@ def testing_api():
     test_etf.append(user_score_th.get_risk_cat())
     # user_score_th.calculate_mix()
     user_score_th.get_mix()
-    user_score_io.calc_io_first_answer('c')
-    user_score_io.calc_io_second_answer('a')
+    user_score_io.calc_io_first_answer('a')
+    user_score_io.calc_io_second_answer('c')
     user_score_io.set_objective()
     test_etf.append(user_score_io.get_cat())
     user_score_esg.calc_first_answer('e')
@@ -254,8 +254,39 @@ def testing_api():
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = []  # List that will hold the ticker symbols
     for result in etfs:
-        tickers.append(result['ticker'])
+        tickers.append(result['symbol'])
     print(tickers)
+
+    print("HERE")
+    another_api = []
+    for symbol in tickers:
+        current = td.time_series(
+            symbol=symbol,
+            interval="1day",
+            outputsize=1
+        )
+        another_api.append(current.as_json())
+        list(another_api)
+    print(another_api)
+
+    print("TRY THIS")
+    # for meta_data in another_api:
+    #     for symbol in meta_data:
+    #         for key, value in symbol.items():
+    #             print(f'{key}: {value}')
+    #
+    only_dics = []
+    for meta_data in another_api:
+        print("metadata")
+        print(meta_data)
+        for symbol in meta_data:
+            print("symbol")
+            print(symbol)
+            only_dics.append(symbol)
+            print("Only dics!")
+            print(only_dics)
+
+
 
     # This works!
     # ts = td.time_series(
@@ -264,28 +295,35 @@ def testing_api():
     #     outputsize=1
     # )
 
-    single = td.time_series(
-        symbol="VTI",
-        interval="1day",
-        outputsize=1,
-    )
+    #
+    # single = td.time_series(
+    #     symbol="VTI",
+    #     interval="1day",
+    #     outputsize=1,
+    # )
 
-    print("Single ETF)")
+
+    # print("Single ETF)")
     single_eft = []
-    single_eft = list(single.as_json())
-    del single_eft[0]['datetime']
-    del single_eft[0]['volume']
-    print("List of etfs")
+    # single.as_json()
+    # print(single)
+    # single_eft = list(single.as_json())
+    # print(single_eft)
+    # del single_eft[0]['datetime']
+    # del single_eft[0]['volume']
+    # print("List of etfs")
     testing_dics = []
+    # print("TS.AS.JSON")
     # print(ts.as_json())
+    # api_calls =[]
+    # api_calls.append(ts)
     # testing_dics = list(ts.as_json())
-    print(testing_dics)
-    # NEW
-    urls = []
-    # for result in etfs:
-    #     urls.append(
-    #         "https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(
-    #             result['ticker']) + "&outputsize=1")
+    # print("testing_dics")
+    # print(testing_dics)
+
+    # print("HOW ABOUT THIS?")      this doesn't work
+    # for call in api_calls:
+    #     print(call)
 
     print("Final results")
     print(test_etf)
@@ -293,8 +331,7 @@ def testing_api():
     print("Clear")
     print(test_etf)
     # print(urls)
-    return render_template('api-test.html', urls=urls,
-                           single_eft=single_eft)
+    return render_template('api-test.html', only_dics=only_dics, tickers=tickers)
 
 
 

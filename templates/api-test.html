@@ -4,20 +4,38 @@
             <div>{{ data | currencyFormat }}</div>
         {% endif %}
 
+<div class ="row">
+<div class="column">
+
+        <table>
+            <thead>
+
+            </thead>
+            <tbody>
+            {% for symbol in tickers %}
+
+                <tr>
+                    <td>{{ symbol }}</td></tr>
+
+
+            {% endfor %}
+            </tbody>
+        </table>
+     </div>
+  <div class="column">
         <table>
         <thead>
         <tr>
-            <th>API Calls</th>
 <!--            <th>Name</th>-->
         </tr>
         </thead>
         <tbody>
-            {% for result in single_eft %}
+            {% for result in only_dics %}
                 {% for key, data in result.items() %}
             <tr>
-                <td>{{ key.title() }} </td>
-                <td>{{ data | currencyFormat }} </td>
-<!--                <td>{{ results }}</td>-->
+                <td>{{ key.title()}}:  {{ data }} </td>
+<!--                <td>{{ data }} </td>-->
+
             </tr>
 
             {% endfor %}
@@ -25,14 +43,16 @@
 
         </tbody>
     </table>
+    </div>
+    </div>
 
 <!-- <table>-->
 <!--        <thead>-->
 <!--        <tr>-->
-<!--            <th>Symbol</th>-->
-<!--            <th>Date</th>-->
-<!--            <th>Opening</th>-->
-<!--            <th>Closing</th>-->
+<!--&lt;!&ndash;            <th>Symbol</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Date</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Opening</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Closing</th>&ndash;&gt;-->
 <!--&lt;!&ndash;            <th>Name</th>&ndash;&gt;-->
 <!--        </tr>-->
 <!--        </thead>-->
