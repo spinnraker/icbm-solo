@@ -4,25 +4,6 @@
             <div>{{ data | currencyFormat }}</div>
         {% endif %}
 
-<!--<div class ="row">-->
-<!--<div class="column">-->
-
-<!--        <table>-->
-<!--            <thead>-->
-
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            {% for symbol in tickers %}-->
-
-<!--                <tr>-->
-<!--                    <td>{{ symbol }}</td></tr>-->
-
-
-<!--            {% endfor %}-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--     </div>-->
-<!--  <div class="column">-->
         <table>
         <thead>
         <tr>
@@ -41,10 +22,7 @@
             <tr scope="col">
                 <td scope="row">{{ key.title()}}:  {{ data }} </td>
 <!--                <td>{{ data }} </td>-->
-
             </tr>
-
-
             {% endfor %}
             {% endfor %}
 
