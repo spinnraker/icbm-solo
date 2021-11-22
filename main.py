@@ -212,6 +212,11 @@ def currencyFormat(value):
     value = float(value)
     return "${:,.2f}".format(value)
 
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 @app.route("/test")
 def testing_api():
     print("Start")
