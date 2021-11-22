@@ -2,29 +2,21 @@
 
 {% block body %}
 
-<!--<div>-->
-<!--    <div class="logo">-->
-<!--        <img src="{{url_for('static', filename='logo_3.png')}}"/>-->
-<!--    </div>-->
-<!--    <div>-->
 <div class="meter">
             <span style="width: 9%"></span>
         </div>
-<!--<h1>Time Horizon</h1>-->
-<!--<h2>Question 1</h2>-->
+
+<!--Add question to div with a class questions-->
 <div class="questions">
     <h3>How long are you planning on investing your money?</h3>
 </div>
 
-<!--    </div>-->
-<!--    &lt;!&ndash;        progress bar&ndash;&gt;-->
-
-<!--</div>-->
-
-
+<!--Add all options to one div with a class options-->
 <div class="options">
 
 <form name="time_horizon" action="/time-horizon" method="get">
+
+<!--    Add each question to a div with a class card-->
     <div class="card">
         <input type="radio" id="a" name="time_horizon" value="a" required>
     <label for="a">Less than 4 years</label><br>
@@ -34,8 +26,6 @@
          <input type="radio" id="b" name="time_horizon" value="b">
         <label for="b">5-10 years</label><br>
     </div>
-
-
 
      <div class="card">
         <input type="radio" id="c" name="time_horizon" value="c">
