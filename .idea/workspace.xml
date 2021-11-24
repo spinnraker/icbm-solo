@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Splash Screen Centered">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637781215341</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description.">
+      <created>1637783699136</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637783699136</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +132,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Layout redesign" />
     <MESSAGE value="Splash Screen Centered" />
-    <option name="LAST_COMMIT_MESSAGE" value="Splash Screen Centered" />
+    <MESSAGE value="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description." />
+    <option name="LAST_COMMIT_MESSAGE" value="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
