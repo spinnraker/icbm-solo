@@ -1,36 +1,41 @@
 {% extends 'layout.html' %}
 {% block body %}
-<div class="split left">
-     <div class="logo">
-        <img src="{{url_for('static', filename='logo_3.png')}}"/>
-    </div>
-    <div class="centered">
+
+<!--        progress bar-->
+<div class="meter">
+    <span style="width: 9%"></span>
+</div>
 
 <!--<h1>Risk Tolerance</h1>-->
 <!--        <h2>Question 3</h2>-->
-<h3>Which scenario are you most comfortable with:</h3>
+        <div class="questions">
+        <h3>Which scenario are you most comfortable with:</h3>
         </div>
-        <!--        progress bar-->
-        <div class="meter">
-            <span style="width: 36%"></span>
 
-</div>
-
-<div class="split right">
-    <div class="centered">
-<form name="rp-first" action="/rp-first" method="get">
-    <input type="radio" id="a" name="rp-first" value="a" required>
-        <label for="a">Average Annual Return: 7% Best Case: 16%. Worst Case: -5% </label></br>
-    <input type="radio" id="b" name="rp-first" value="b">
-        <label for="b">Average Annual Return: 9% Best Case: 25%. Worst Case: -12% </label></br>
-    <input type="radio" id="c" name="rp-first" value="c">
-        <label for="c">Average Annual Return: 10% Best Case: 33%. Worst Case: -18% </label></br>
-    <input type="radio" id="d" name="rp-first" value="d">
-        <label for="d">Average Annual Return: 11% Best Case: 42%. Worst Case: -24% </label></br>
-    <input type="radio" id="e" name="rp-first" value="d">
-        <label for="e">Average Annual Return: 12% Best Case: 50%. Worst Case: -28% </label><br><br><br>
-    <input type="submit" value="Next Question" class="button">
-</form>
-   </div>
+<!--Add all options to one div with a class options-->
+<div class="options">
+    <form name="rp-first" action="/rp-first" method="get">
+        <div class="card">
+            <input type="radio" id="a" name="rp-first" value="a" required>
+            <label for="a">Average Annual Return: 7% Best Case: 16%. Worst Case: -5% </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="b" name="rp-first" value="b" required>
+            <label for="b">Average Annual Return: 9% Best Case: 25%. Worst Case: -12% </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="c" name="rp-first" value="c" required>
+            <label for="c">Average Annual Return: 10% Best Case: 33%. Worst Case: -18% </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="d" name="rp-first" value="d" required>
+            <label for="d">Average Annual Return: 11% Best Case: 42%. Worst Case: -24% </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="e" name="rp-first" value="e" required>
+            <label for="e">Average Annual Return: 12% Best Case: 50%. Worst Case: -28% </label><br>
+        </div>
+        <input type="submit" value="Next Question" class="white-button">
+    </form>
 </div>
 {% endblock %}

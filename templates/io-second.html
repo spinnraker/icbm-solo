@@ -1,35 +1,35 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-<div class="split left">
-    <div class="logo">
-        <img src="{{url_for('static', filename='logo_3.png')}}"/>
-    </div>
-    <div class="centered">
+<div class="meter">
+    <span style="width: 9%"></span>
+</div>
 
-<!--<h1>Investment Objective</h1>-->
-<!--        <h2>Question 3</h2>-->
-<h3>If investing in a stock, would you rather</h3>
-        <!--        progress bar-->
+<!--Add question to div with a class questions-->
+<div class="questions">
+    <h3>If investing in a stock, would you rather</h3>
+</div>
 
-            </div>
-    <div class="meter">
-            <span style="width: 27%"></span>
+<!--Add all options to one div with a class options-->
+<div class="options">
+    <form name="io-second" action="/io-second" method="get">
+        <!--    Add each question to a div with a class card-->
+        <div class="card">
+            <input type="radio" id="a" name="io-second" value="a" required>
+            <label for="a">Buy Companies that may make significant technological advances that are still selling at their
+                low initial offering price </label><br>
         </div>
+        <div class="card">
+            <input type="radio" id="b" name="io-second" value="b">
+            <label for="b">Established, well-known companies that have a potential for continued growth</label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="c" name="io-second" value="c">
+            <label for="c">'Blue chip' stocks that pay dividends </label><br>
+        </div>
+        <input type="submit" value="Next Question" class="white-button">
+    </form>
 </div>
 
-<div class="split right">
-    <div class="centered">
-<form name="io-second" action="/io-second" method="get">
-    <input type="radio" name="io-second" id="a" value="a" required>
-    <label for="a">Buy Companies that may make significant technological advances that are still selling at their
-        low initial offering price </label></br>
-    <input type="radio" id="b" name="io-second" value="b">
-    <label for="b">Established, well-known companies that have a potential for continued growth</label></br>
-    <input type="radio" id="c" name="io-second" value="c">
-    <label for="c">'Blue chip' stocks that pay dividends </label><br><br><br>
-    <input type="submit" value="Next Question" class="button">
-</form>
-  </div>
-</div>
+
 {% endblock %}

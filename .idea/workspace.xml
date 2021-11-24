@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/splash.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/splashStyles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/esg-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-first.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/esg-fourth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-fourth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/esg-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-second.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/esg-third.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-third.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/io-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/io-first.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/io-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/io-second.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rp-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-first.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rp-fourth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-fourth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rp-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-second.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/rp-third.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-third.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/time-horizon.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/time-horizon.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +51,44 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Chrono\AppData\Local\Programs\Python\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

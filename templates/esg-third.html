@@ -1,36 +1,42 @@
 {% extends 'layout.html' %}
 {% block body %}
-<!--<h1>ESG</h1>-->
-<div class="split left">
-     <div class="logo">
-        <img src="{{url_for('static', filename='logo_3.png')}}"/>
-    </div>
-    <div class="centered">
-<!--<img src="{{url_for('static', filename='logo_3.png')}}"/>-->
-<h3>Investors should take into consideration ethical business practices, executive compensation, and board independence
-    when choosing which companies to invest in. </h3>
-        </div>
-<!--        progress bar-->
 <div class="meter">
-    <span style="width: 90%"></span>
+    <span style="width: 9%"></span>
 </div>
-    </div>
+
+<!--Add question to div with a class questions-->
+<div class="questions">
+    <h3>Investors should take into consideration ethical business practices, executive compensation, and board independence
+        when choosing which companies to invest in. </h3>
+</div>
+
+<!--Add all options to one div with a class options-->
+<div class="options">
+    <form name="esg-third" action="/esg-third" method="get">
+        <!--    Add each question to a div with a class card-->
+        <div class="card">
+            <input type="radio" id="a" name="esg-third" value="a" required>
+            <label for="a">Strongly Disagree </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="b" name="esg-third" value="b">
+            <label for="b">Somewhat Disagree </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="c" name="esg-third" value="c">
+            <label for="c">Neutral </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="d" name="esg-third" value="d">
+            <label for="d">Somewhat Agree </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="e" name="esg-third" value="e">
+            <label for="e">Strongly Agree </label><br>
+        </div>
+        <input type="submit" value="Next Question" class="white-button">
+    </form>
+</div>
 
 
-<div class="split right">
-    <div class="centered">
-<form name="esg-third" action="/esg-third" method="get">
-    <input type="radio" id="a" name="esg-third" value="a" required>
-        <label for="a">Strongly Disagree </label></br>
-    <input type="radio" id="b" name="esg-third" value="b">
-        <label for="b">Somewhat Disagree </label></br>
-    <input type="radio" id="c" name="esg-third" value="c">
-        <label for="c">Neutral </label></br>
-    <input type="radio" id="d" name="esg-third" value="d">
-        <label for="d">Somewhat Agree </label></br>
-    <input type="radio" id="e" name="esg-third" value="d">
-        <label for="e">Strongly Agree </label></br></br></br>
-    <input type="submit" value="Next Question" class="button">
-</form>
-    </div></div>
 {% endblock %}

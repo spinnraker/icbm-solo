@@ -1,37 +1,42 @@
 {% extends 'layout.html' %}
 {% block body %}
-<!--<h1>Risk Tolerance</h1>-->
-<div class="split left">
-     <div class="logo">
-        <img src="{{url_for('static', filename='logo_3.png')}}"/>
-    </div>
-    <div class="centered">
-<!--<img src="{{url_for('static', filename='logo_3.png')}}"/>-->
-<h3>How would you describe your approach toward investing?</h3>
-        </div>
+
 <!--        progress bar-->
 <div class="meter">
-    <span style="width: 54%"></span>
-
-    </div>
+    <span style="width: 9%"></span>
 </div>
 
-<div class="split right">
-    <div class="centered">
-<form name="rp-third" action="/rp-third" method="get">
-    <input type="radio" id="a" name="rp-third" value="a" required>
-        <label for="a">I am uncomfortable with volatility. Lower rates of return are acceptable in exchange for stable
-            portfolio values. </label></br>
-    <input type="radio" id="b" name="rp-third" value="b">
-        <label for="b">I expect a minor fluctuation in the value of my investments. I am willing to accept periodic,
-            small losses in my portfolio, but I want my returns to be competitive in the long-term. </label></br>
-    <input type="radio" id="c" name="rp-third" value="c">
-        <label for="c">I am comfortable seeing the value of my investments fluctuate as much or even more than the
-            stock market. During some years, I might have a loss, but over time I expect my returns to be at least as
-            high as the historical return of stocks. </label></br></br></br>
-    <input type="submit" value="Next Question" class="button">
-</form>
-
-    </div>
+<!--Add question to div with a class questions-->
+<div class="questions">
+    <h3>How would you describe your approach toward investing?</h3>
 </div>
+
+<!--Add all options to one div with a class options-->
+<div class="options">
+
+    <form name="rp-third" action="/rp-third" method="get">
+
+        <!--    Add each question to a div with a class card-->
+        <div class="card">
+            <input type="radio" id="a" name="rp-third" value="a" required>
+            <label for="a">I am uncomfortable with volatility. Lower rates of return are acceptable in exchange for stable
+                portfolio values. </label><br>
+        </div>
+
+        <div class="card">
+            <input type="radio" id="b" name="rp-third" value="b">
+            <label for="b">I expect a minor fluctuation in the value of my investments. I am willing to accept periodic,
+                small losses in my portfolio, but I want my returns to be competitive in the long-term. </label><br>
+        </div>
+
+        <div class="card">
+            <input type="radio" id="c" name="rp-third" value="c">
+            <label for="c">I am comfortable seeing the value of my investments fluctuate as much or even more than the
+                stock market. During some years, I might have a loss, but over time I expect my returns to be at least as
+                high as the historical return of stocks. </label><br>
+        </div>
+        <input type="submit" value="Next Question" class="white-button">
+    </form>
+</div>
+
 {% endblock %}

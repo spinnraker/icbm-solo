@@ -1,34 +1,35 @@
 {% extends 'layout.html' %}
 {% block body %}
-<!--<h1>Risk Tolerance</h1>-->
-<div class="split left"> <div class="logo">
-        <img src="{{url_for('static', filename='logo_3.png')}}"/>
-    </div>
 
-    <div class="centered">
-<!--<img src="{{url_for('static', filename='logo_3.png')}}"/>-->
-<h3>The price of your stocks has dropped by 31% in the last three weeks. What would you do?</h3>
-        </div>
 <!--        progress bar-->
 <div class="meter">
-    <span style="width: 63%"></span>
-
-    </div>
+    <span style="width: 9%"></span>
 </div>
 
-<div class="split right">
-    <div class="centered">
-<form name="rp-fourth" action="/rp-fourth" method="get">
-    <input type="radio" id="a" name="rp-fourth" value="a" required>
-        <label for="a">Sell the remaining stock, since seeing such a substantial price drop keeps you up at night.
-        </label></br>
-    <input type="radio" id="b" name="rp-fourth" value="b">
-        <label for="b">Do nothing-- these things happen! </label></br>
-    <input type="radio" id="c" name="rp-fourth" value="c">
-        <label for="c">Buy the dip! A drop in price means you should purchase more shares while they're cheap. </label>
-    </br></br></br>
-    <input type="submit" value="Next Question" class="button">
-</form>
+<!--Add question to div with a class questions-->
+<div class="questions">
+    <h3>The price of your stocks has dropped by 31% in the last three weeks. What would you do?</h3>
+</div>
 
-    </div></div>
+<!--Add all options to one div with a class options-->
+<div class="options">
+    <form name="rp-fourth" action="/rp-fourth" method="get">
+        <!--    Add each question to a div with a class card-->
+        <div class="card">
+            <input type="radio" id="a" name="rp-fourth" value="a" required>
+            <label for="a">Sell the remaining stock, since seeing such a substantial price drop keeps you up at night.</label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="b" name="rp-fourth" value="b">
+            <label for="b">Do nothing-- these things happen! </label><br>
+        </div>
+        <div class="card">
+            <input type="radio" id="c" name="rp-fourth" value="c">
+            <label for="c">Buy the dip! A drop in price means you should purchase more shares while they're cheap. </label><br>
+        </div>
+        <input type="submit" value="Next Question" class="white-button">
+    </form>
+</div>
+
+
 {% endblock %}

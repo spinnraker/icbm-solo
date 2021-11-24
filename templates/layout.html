@@ -232,6 +232,79 @@
   overflow: hidden;
 }
 
+       .logo {
+           display: flex;
+           margin-left: auto;
+           margin-right: auto;
+           width: 15%;
+           height: 15%
+       }
+
+       <!--Table formatting-->
+           * {
+               box-sizing: border-box;
+           }
+
+       .row {
+           display: flex;
+           margin-left:-5px;
+           margin-right:-5px;
+       }
+
+       .column {
+           flex: 50%;
+           padding: 5px;
+       }
+
+       table {
+           border-collapse: collapse;
+           border-spacing: 0;
+           width: 100%;
+           border: 1px solid #ddd;
+       }
+
+       th, td {
+           text-align: left;
+           padding: 16px;
+       }
+
+       .questions {
+           margin: auto;
+           width: 50%;
+           padding: 25px;
+           text-align: justify;
+       }
+
+       .options {
+           margin: auto;
+           width: 50%;
+           padding: 25px;
+           text-align: justify;
+       }
+
+       .card {
+           border-color: white;
+           border-style: solid;
+           border-width: 2px;
+           padding: 15px;
+           margin: 25px;
+           text-align: center;
+           text-decoration: none;
+           border-radius: 25px;
+           background-color: transparent ;
+           display: flex;
+       }
+
+       .card:hover{
+           background-color: white;
+           color: #152349;
+       }
+
+       .fixed_logo {
+           float: left;
+           max-width:  10px;
+           max-height: 10px;
+       }
 footer{
     position: absolute;
     bottom: 0;
