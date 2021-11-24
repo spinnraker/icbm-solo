@@ -188,6 +188,7 @@
     }
 
      .white-button {
+         margin-left: 40%;
          background-color: white;
           border: none;
           color: #152349;;
@@ -209,7 +210,7 @@
     }
 
    .meter {
-      height: 25px;
+      height: 50px;
       position: relative;
       background: white;
       border-radius: 25px;
@@ -338,9 +339,8 @@ footer{
 .socials{
     list-style: none;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 0 3rem 0;
+    position: relative;
+    margin-right: 2%;
 }
 .socials li{
     margin: 0 10px;
@@ -353,14 +353,19 @@ footer{
     font-size: 1.1rem;
     transition: color .4s ease;
 }
-.socials a:hover i{
+.socials a:hover i + .hide{
     color: aqua;
+    display: block;
 }
 .footer-bottom {
     background: #000;
     width: 100vw;
 }
 .footer-bottom p{
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 50%;
     font-size: 14px;
     word-spacing: 2px;
     text-transform: capitalize;
@@ -372,12 +377,12 @@ footer{
 <body>
 <footer>
     <div class="footer-content">
-        <h3>Code Opacity</h3>
-        <p>Lorem ipsum</p>
+        <h3>Invest, Collect, Build Money</h3>
+        <p>Invest in yourself.</p>
         <ul class="socials">
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/spinnraker/"><i class="fa fa-linkedin-square"> Catalina</i></a></li>
+            <li><a href="https://www.linkedin.com/in/bryan-c-77a552ab/"><i class="fa fa-linkedin-square"> Bryan</i></a></li>
+            <li><a href="https://www.linkedin.com/in/nick-a-443296140/"><i class="fa fa-linkedin-square"> Nick</i></a></li>
         </ul>
     </div>
     <div class="footer-bottom">
