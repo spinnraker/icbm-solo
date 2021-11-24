@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Layout redesign">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-fourth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-fourth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-second.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-third.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-third.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/io-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/io-first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/io-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/io-second.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-fourth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-fourth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-second.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-third.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-third.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/time-horizon.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/time-horizon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +90,14 @@
       <workItem from="1636944304155" duration="9222000" />
       <workItem from="1637525527616" duration="4667000" />
     </task>
+    <task id="LOCAL-00001" summary="Layout redesign">
+      <created>1637780813539</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637780813539</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +114,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Layout redesign" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layout redesign" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
