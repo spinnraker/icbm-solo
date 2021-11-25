@@ -1,21 +1,27 @@
 {% extends 'layout.html' %}
 {% block body %}
-<!--<h1>About</h1>-->
-<div class="split left">
-    <div class="logo">
-        <img src="{{url_for('static', filename='logo_3.png')}}"/>
-    </div>
-    <div class="centered">
-        <!--<img src="{{url_for('static', filename='logo_3.png')}}"/>-->
-        <h3>The ICBM Investing tool is designed to recommend a general investing strategy that is personalized for your needs.
-            It analyzes the same broad criteria used by most financial advisors-- time horizon, investment objectives, and risk tolerance.
-            what makes the ICBM tool unique is it's added emphasis on ESG investing (Environmental, Social, Governance) that ensures is recommendations
-            align with your personal ethics. The ICBM tool also exclusively recommends ETFs (Exchange-Traded Funds), which are generally more stable than stocks.
-            it is also important to note that the ICBM tool is not backed by any certified financial advice, and is intended merely as a guidance tool.</h3>
-    </div>
-</div>
+<div class="centered-card">
+<h2>About Us</h2>
+<p>The ICBM Guided Investing Tool helps users create a portfolio of Exchange-Traded Funds(ETFs), considering their
+    Environmental, Social, and Governance (ESG) preferences to ensure our investment guidance aligns with their values.
+</p>
 
-<div class="split right"/>
-<div class="centered"/>
+<h2>Our Mission</h2>
+<p>
+    There are nearly 6000 publicly listed U.S. stocks and over 2200 ETFs. With so many options available, choosing an
+    asset mix that addresses their needs and reflects their values can be difficult for new investors. We aim to
+    simplify investing and remove one of the significant hurdles for new investors: uncertainty.
+
+</p>
+<h2>Methodology</h2>
+<p>
+    Our algorithm makes an asset mix suggestion based on four categories*. It then selects from a curated library of
+    high-performing ETFs, specifically chosen based on their Asset Under Management value. These suggestions include a
+    variety of domestic and international segments, ranging from Large Capitalization companies to Fixed Income and even
+    Alternatives (Hedge Funds, Private Equity, Venture Capital, etc.)
+
+</p>
+
+</div>
 
 {% endblock %}
