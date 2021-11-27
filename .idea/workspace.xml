@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Code reformat in layout, closed in nav bar and progress bar.">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Main.py rollback... connection issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -91,7 +91,7 @@
       <workItem from="1636944304155" duration="9222000" />
       <workItem from="1637525527616" duration="4667000" />
       <workItem from="1638041675109" duration="1879000" />
-      <workItem from="1638050791653" duration="3545000" />
+      <workItem from="1638050791653" duration="4163000" />
     </task>
     <task id="LOCAL-00001" summary="Layout redesign">
       <created>1637780813539</created>
@@ -142,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638054123903</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Main.py rollback... connection issues">
+      <created>1638054464844</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1638054464844</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +174,8 @@
     <MESSAGE value="Progress bar fix" />
     <MESSAGE value="Footer overlapping position fix" />
     <MESSAGE value="Code reformat in layout, closed in nav bar and progress bar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Code reformat in layout, closed in nav bar and progress bar." />
+    <MESSAGE value="Main.py rollback... connection issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main.py rollback... connection issues" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

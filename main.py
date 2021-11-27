@@ -184,8 +184,8 @@ def mix_calculator():
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = [] # List that will hold the ticker symbols
-    # for result in etfs:
-    #     tickers.append(result['name'])
+    for result in etfs:
+        tickers.append(result['name'])
 
     # NEW
     urls = []
@@ -238,9 +238,9 @@ def testing_api():
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
     tickers = []  # List that will hold the ticker symbols
-    # for result in etfs:
-    #     tickers.append(result['name'])
-
+    for result in etfs:
+        tickers.append(result['name'])
+    print(tickers)
     # NEW
     urls = []
     for result in etfs:
