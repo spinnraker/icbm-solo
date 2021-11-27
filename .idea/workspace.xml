@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description.">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Progress bar fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-fourth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-fourth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-second.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/esg-third.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/esg-third.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/io-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/io-first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/io-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/io-second.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-first.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-first.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-fourth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-fourth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-second.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-second.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/rp-third.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/rp-third.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +90,7 @@
       <workItem from="1636944304155" duration="9222000" />
       <workItem from="1637525527616" duration="4667000" />
       <workItem from="1638041675109" duration="1879000" />
-      <workItem from="1638050791653" duration="319000" />
+      <workItem from="1638050791653" duration="2440000" />
     </task>
     <task id="LOCAL-00001" summary="Layout redesign">
       <created>1637780813539</created>
@@ -130,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637785530532</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Progress bar fix">
+      <created>1638051202631</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638051202631</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +149,8 @@
     <MESSAGE value="Layout redesign" />
     <MESSAGE value="Splash Screen Centered" />
     <MESSAGE value="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description." />
-    <option name="LAST_COMMIT_MESSAGE" value="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description." />
+    <MESSAGE value="Progress bar fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress bar fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

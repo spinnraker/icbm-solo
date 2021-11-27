@@ -313,7 +313,7 @@ text-align: center;
            max-height: 10px;
        }
 footer{
-    position: absolute;
+
     bottom: 0;
     left: 0;
     right: 0;
@@ -381,6 +381,12 @@ footer{
 </head>
 
 <body>
+
+{% block body %}
+
+{% endblock %}
+
+</body>
 <footer>
     <div class="footer-content">
         <h3>Invest, Collect, Build Money</h3>
@@ -395,10 +401,4 @@ footer{
         <p>Follow us!</p>
     </div>
 </footer>
-{% block body %}
-
-{% endblock %}
-
-</body>
-
 </html>
