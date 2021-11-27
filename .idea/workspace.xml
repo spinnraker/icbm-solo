@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Footer overlapping position fix">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Code reformat in layout, closed in nav bar and progress bar.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,7 @@
       <workItem from="1636944304155" duration="9222000" />
       <workItem from="1637525527616" duration="4667000" />
       <workItem from="1638041675109" duration="1879000" />
-      <workItem from="1638050791653" duration="3168000" />
+      <workItem from="1638050791653" duration="3545000" />
     </task>
     <task id="LOCAL-00001" summary="Layout redesign">
       <created>1637780813539</created>
@@ -135,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638053327616</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Code reformat in layout, closed in nav bar and progress bar.">
+      <created>1638054123903</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1638054123903</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +166,8 @@
     <MESSAGE value="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description." />
     <MESSAGE value="Progress bar fix" />
     <MESSAGE value="Footer overlapping position fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Footer overlapping position fix" />
+    <MESSAGE value="Code reformat in layout, closed in nav bar and progress bar." />
+    <option name="LAST_COMMIT_MESSAGE" value="Code reformat in layout, closed in nav bar and progress bar." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
