@@ -1,8 +1,16 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
+import requests
+import json
+from ast import literal_eval
 from icbm_code.calculations import time_risk_mix_calc as mx, \
     esg_inv_objective_etf_calc as etf
-
+from twelvedata import TDClient
 from pymongo import MongoClient
+cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+
+
+# Twelvedata API key
+td = TDClient(apikey="8f91b729c73c4b57b3ceb054ee727a2f")
 cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
 
 # db = cluster["ICBM"]
@@ -234,12 +242,30 @@ def testing_api():
     #from here
     etf_style = final_etf.get_etf_style()
     etf_type = final_etf.get_etf_type()
+
+    print("DB")
     db = cluster["ICBM"]
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
+
     tickers = []  # List that will hold the ticker symbols
-    # for result in etfs:
-    #     tickers.append(result['name'])
+    for result in etfs:
+        tickers.append(result['symbol'])
+    print(tickers)
+
+    # print("batch api calls 1")
+    another_api = []
+    for symbol in tickers:
+        current = td.time_series(
+            symbol=symbol,
+            interval="1day",
+            outputsize=1
+        )
+        another_api.append(current.as_json())
+        print(another_api)
+        print("Making it a list")
+        list(another_api)
+    print(another_api)
 
     # NEW
     urls = []
@@ -247,11 +273,29 @@ def testing_api():
         urls.append(
             "https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(
                 result['ticker']) + "&outputsize=1")
-
-    print("Final results")
-    print(final_answers)
-    final_answers.clear()
-    return render_template('api-test.html', urls=urls)
+ # print("TRY THIS")
+    # for meta_data in another_api:
+    #     for symbol in meta_data:
+    #         for key, value in symbol.items():
+    #             print(f'{key}: {value}')
+    #
+    # This is what I'm using
+    only_dics = []
+    for meta_data in another_api:
+        print("metadata")
+        print(meta_data)
+        for symbol in meta_data:
+            print("symbol")
+            print(symbol)
+            only_dics.append(symbol)
+            print("Only dics!")
+            print(only_dics)
+            
+   # old code here
+   # print("Final results")
+   # print(final_answers)
+   # final_answers.clear()
+   # return render_template('api-test.html', urls=urls)
 
 
 
