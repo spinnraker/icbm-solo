@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Progress bar fix">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Footer overlapping position fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
     </list>
@@ -43,6 +43,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RunManager">
@@ -90,7 +91,7 @@
       <workItem from="1636944304155" duration="9222000" />
       <workItem from="1637525527616" duration="4667000" />
       <workItem from="1638041675109" duration="1879000" />
-      <workItem from="1638050791653" duration="2440000" />
+      <workItem from="1638050791653" duration="3168000" />
     </task>
     <task id="LOCAL-00001" summary="Layout redesign">
       <created>1637780813539</created>
@@ -127,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638051202631</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Footer overlapping position fix">
+      <created>1638053327616</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1638053327616</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +158,8 @@
     <MESSAGE value="Splash Screen Centered" />
     <MESSAGE value="Centered button, added linkedin links, progress bar re-height, centered as best as i can,  footer description." />
     <MESSAGE value="Progress bar fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress bar fix" />
+    <MESSAGE value="Footer overlapping position fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Footer overlapping position fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
