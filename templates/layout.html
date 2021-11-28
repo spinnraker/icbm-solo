@@ -108,7 +108,7 @@
         }
 
         button[aria-expanded="true"] {
-            background-color: transparent !important;
+            background-color: transparent;
             border: none;
             position: fixed;
             left: 82vw;
@@ -195,6 +195,7 @@
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
+            margin-left: 20%;
             display: inline-block;
             font-size: 24px;
             border-radius: 25px;
@@ -212,6 +213,14 @@
             font-size: 24px;
             border-radius: 25px;
         }
+        .white-button:hover{
+            background-color: #152349;
+            color: white;
+            border-color: white;
+            border-style: solid;
+            border-width: 2px;
+
+        }
 
         input[type='radio'] {
             transform: scale(2);
@@ -219,7 +228,7 @@
 
         input[type='checkbox'] {
             zoom: 1.75;
-        <!-- transform: scale(2) -->
+        <!-- transform: scale(4) -->
         }
 
         .meter {
@@ -303,13 +312,14 @@
             border-color: white;
             border-style: solid;
             border-width: 2px;
-            padding: 15px;
+            padding: 5px;
             margin: 25px;
             text-align: center;
             text-decoration: none;
             border-radius: 25px;
             background-color: transparent;
             display: flex;
+
         }
 
         .card:hover {
@@ -317,10 +327,24 @@
             color: #152349;
         }
 
+        .card input {
+            margin: 0 10px;
+        }
+
+        .card label {
+            padding: inherit;
+            text-decoration: none;
+        }
+
+        .card label:hover {
+            cursor: pointer;
+        }
+
         .centered-card {
             padding: 50px;
             margin: 25px;
             text-align: center;
+            cursor: pointer;
         }
 
         .fixed_logo {
