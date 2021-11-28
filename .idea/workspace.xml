@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Code reformat in layout, closed in nav bar and progress bar.">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="GUI Gapping on navbar and progress bar.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/time-horizon.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/time-horizon.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,8 @@
       <workItem from="1636944304155" duration="9222000" />
       <workItem from="1637525527616" duration="4667000" />
       <workItem from="1638041675109" duration="1879000" />
-      <workItem from="1638050791653" duration="3545000" />
+      <workItem from="1638050791653" duration="4844000" />
+      <workItem from="1638055691877" duration="2936000" />
     </task>
     <task id="LOCAL-00001" summary="Layout redesign">
       <created>1637780813539</created>
@@ -142,7 +144,28 @@
       <option name="project" value="LOCAL" />
       <updated>1638054123903</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Main.py rollback... connection issues">
+      <created>1638054464844</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1638054464844</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Results fix with display.">
+      <created>1638055041652</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1638055041652</updated>
+    </task>
+    <task id="LOCAL-00010" summary="GUI Gapping on navbar and progress bar.">
+      <created>1638055451950</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1638055451950</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +190,10 @@
     <MESSAGE value="Progress bar fix" />
     <MESSAGE value="Footer overlapping position fix" />
     <MESSAGE value="Code reformat in layout, closed in nav bar and progress bar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Code reformat in layout, closed in nav bar and progress bar." />
+    <MESSAGE value="Main.py rollback... connection issues" />
+    <MESSAGE value="Results fix with display." />
+    <MESSAGE value="GUI Gapping on navbar and progress bar." />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI Gapping on navbar and progress bar." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
