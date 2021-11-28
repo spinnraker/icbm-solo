@@ -183,23 +183,23 @@ def mix_calculator():
     db = cluster["ICBM"]
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
-    tickers = [] # List that will hold the ticker symbols
-    # for result in etfs:
-    #     tickers.append(result['name'])
+    symbols = [] # List that will hold the ticker symbols
+    for result in etfs:
+        symbols.append(result['name'])
 
     # NEW
     urls = []
     for result in etfs:
         urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['symbol']) + "&outputsize=1" )
 
-
+    print(symbols)
     print("Final results")
     print(final_answers)
     final_answers.clear()
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
-                           results=tickers, urls=urls)
+                           symbols=symbols, urls=urls)
 
 
 @app.route("/test")
@@ -237,7 +237,7 @@ def testing_api():
     db = cluster["ICBM"]
     collection = db["ETF"]
     etfs = collection.find({"type": etf_type, "style": etf_style})
-    tickers = []  # List that will hold the ticker symbols
+    symbols = []  # List that will hold the ticker symbols
     # for result in etfs:
     #     tickers.append(result['name'])
 
