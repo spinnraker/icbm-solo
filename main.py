@@ -193,7 +193,7 @@ def mix_calculator():
         urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['symbol']) + "&outputsize=1" )
 
     print(symbols)
-    print("This is python_dev")
+    print("This is python_dev-responsive")
     print("Final results")
     print(final_answers)
     final_answers.clear()
