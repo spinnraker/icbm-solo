@@ -193,9 +193,11 @@ def mix_calculator():
         urls.append("https://api.twelvedata.com/time_series?apikey=8f91b729c73c4b57b3ceb054ee727a2f&interval=1day&symbol=" + str(result['symbol']) + "&outputsize=1" )
 
     print(symbols)
+    print("This is python_dev")
     print("Final results")
     print(final_answers)
     final_answers.clear()
+    print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
