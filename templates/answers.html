@@ -25,59 +25,81 @@
       }
     </script>
 
-<div class="split left">
-
-    <div class="centered">
-
-<h2>Results: {{ etf_type }}, {{ etf_style }} ETFs.  </h3>
+{% if nums %}
+<div>{{ nums | currencyFormat }}</div>
+{% endif %}
 
 
+
+<h1>Results</h1>
         <table>
-        <thead>
-        <tr>
-            <th>Names:</th>
+    <thead>
+    <th>Name</th>
+    <th>Ticker Symbol</th>
+    <th>Issuer</th>
+    <th>Category</th>
+    <th>Open Price</th>
+    <th>Close</th>
+    <th>Date</th>
+    </thead>
+    <tbody>
+    <tr>
 
-        </tr>
-        </thead>
-        <tbody>
-            {% for symbol in symbols %}
-            <tr>
-                <td>{{ symbol }} </td>
+        <td>{{ names[0] }}</td>
+        <td>{{ tickers[0] }}</td>
+        <td>{{ issuers[0] }}</td>
+        <td>{{ categories[0] }}</td>
+        <td>{{ etf_0['open'] | currencyFormat}} </td>
+        <td>{{ etf_0['close'] | currencyFormat }}</td>
+        <td>{{ etf_0['datetime'] }}</td>
 
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-    </table>
-
-    </div>
-
-    </div>
-
+    </tr>
+    <tr>
+        <td>{{ names[1] }}</td>
+        <td>{{ tickers[1] }}</td>
+         <td>{{ issuers[1] }}</td>
+        <td>{{ categories[1] }}</td>
+        <td>{{ etf_1['open'] | currencyFormat}} </td>
+        <td>{{ etf_1['close'] | currencyFormat }}</td>
 
 
-<div class="split right">
-    <div class="centered">
-        <div style="margin: 10px 0 0 10px;width: 1000px">
+    </tr>
+     <tr>
+        <td>{{ names[2] }}</td>
+        <td>{{ tickers[2] }}</td>
+          <td>{{ issuers[2] }}</td>
+        <td>{{ categories[2] }}</td>
+        <td>{{ etf_2['open'] | currencyFormat}} </td>
+        <td>{{ etf_2['close'] | currencyFormat }}</td>
 
 
-    <h2>Results</h2>
+    </tr> <tr>
+        <td>{{ names[3] }}</td>
+        <td>{{ tickers[3] }}</td>
+         <td>{{ issuers[3] }}</td>
+        <td>{{ categories[3] }}</td>
+        <td>{{ etf_3['open'] | currencyFormat}} </td>
+        <td>{{ etf_3['close'] | currencyFormat }}</td>
+
+
+    </tr>
+
+
+    </tbody>
+</table>
+
+
+
     <h3>Asset Mix: {{ asset_mix }}</h3>
 
             <div id="piechart" style="width: 900px; height: 500px;"></div>
 
-
-
 <form name="re-take" action="/start" method="get">
     <input type="submit" value="Re-take Quiz" class="white-button">
 </form>
-	</div>
-
-	</div>
 
 
-    </div>
+
 
 
 

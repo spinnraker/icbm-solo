@@ -1,54 +1,120 @@
 {% extends 'layout.html' %}
 {% block body %}
-{% if data %}
-            <div>{{ data | currencyFormat }}</div>
-        {% endif %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			{% for key, value in data.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
 
+        var options = {
+          title: '',
+          is3D: false,
+          };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+{% if nums %}
+<div>{{ nums | currencyFormat }}</div>
+{% endif %}
+
+<div class="split left">
+    <div class="centered">
+
+<h1>Results</h1>
         <table>
-        <thead>
-        <tr>
-<!--            <th>Name</th>-->
-        </tr>
-        </thead>
-        <tbody>
-        {% for symbol in tickers %}
+    <thead>
+    <th>Name</th>
+    <th>Ticker Symbol</th>
+    <th>Open Price</th>
+    <th>High</th>
+    <th>Low</th>
+    <th>Close</th>
+    <th>Date</th>
+    </thead>
+    <tbody>
+    <tr>
 
-        <tr scope="col">
-            <td scope="row">{{ symbol }}</td>
-        </tr>
-         {% endfor %}
-          {% for result in only_dics %}
-                {% for key, data in result.items() %}
-            <tr scope="col">
-                <td scope="row">{{ key.title()}}:  {{ data }} </td>
-<!--                <td>{{ data }} </td>-->
-            </tr>
-            {% endfor %}
-            {% endfor %}
+        <td>{{ names[0] }}</td>
+        <td>{{ tickers[0] }}</td>
+        <td>{{ etf_1['open'] | currencyFormat}} </td>
+        <td>{{ etf_1['high'] | currencyFormat }}</td>
+        <td>{{ etf_1['low'] | currencyFormat }}</td>
+        <td>{{ etf_1['close'] | currencyFormat }}</td>
+        <td>{{ etf_1['datetime'] }}</td>
+    </tr>
+    <tr>
+        <td>{{ names[1] }}</td>
+        <td>{{ tickers[1] }}</td>
+        <td>{{ etf_2['open'] | currencyFormat}} </td>
+        <td>{{ etf_2['high'] | currencyFormat }}</td>
+        <td>{{ etf_2['low'] | currencyFormat }}</td>
+        <td>{{ etf_2['close'] | currencyFormat }}</td>
+        <td>{{ etf_2['datetime'] }}</td>
 
-        </tbody>
-    </table>
+    </tr>
+     <tr>
+        <td>{{ names[2] }}</td>
+        <td>{{ tickers[2] }}</td>
+        <td>{{ etf_3['open'] | currencyFormat}} </td>
+        <td>{{ etf_3['high'] | currencyFormat }}</td>
+        <td>{{ etf_3['low'] | currencyFormat }}</td>
+        <td>{{ etf_3['close'] | currencyFormat }}</td>
+        <td>{{ etf_3['datetime'] }}</td>
+
+    </tr> <tr>
+        <td>{{ names[3] }}</td>
+        <td>{{ tickers[3] }}</td>
+        <td>{{ etf_4['open'] | currencyFormat}} </td>
+        <td>{{ etf_4['high'] | currencyFormat }}</td>
+        <td>{{ etf_4['low'] | currencyFormat }}</td>
+        <td>{{ etf_4['close'] | currencyFormat }}</td>
+        <td>{{ etf_4['datetime'] }}</td>
+
+    </tr>
+
+
+    </tbody>
+</table>
+
     </div>
+
     </div>
 
-<!--<table>-->
-<!--    <thead>-->
-<!--    <th>Testing new data</th>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    {% for item in api_calls %}-->
-
-<!--    <tr>-->
-<!--        <td>{{ item }}</td>-->
-<!--    </tr>-->
-
-<!--      {% endfor %}-->
 
 
-<!--    </tbody>-->
-<!--</table>-->
+<div class="split right">
+    <div class="centered">
+        <div style="margin: 10px 0 0 10px;width: 1000px">
+            <form name="re-take" action="/start" method="get">
+    <input type="submit" value="Re-take Quiz" class="button">
+</form>
+
+    <h2>Results</h2>
+    <h3>Asset Mix: {{ asset_mix }}</h3>
+
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
 
 
+
+
+	</div>
+
+	</div>
+
+
+    </div>
 
 
 
