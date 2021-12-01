@@ -29,9 +29,9 @@
             color: #152349;
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            font-size: 3vh;
+
             font-weight: 400;
-            line-height: 125%;
+            line-height: 200%;
 
         }
 
@@ -40,7 +40,7 @@
             height: 80px;
             width: 110vh;
             z-index: 5;
-            margin-left: 20px;
+
         }
 
         button.navbar-toggle.collapsed {
@@ -148,11 +148,9 @@
         /* Control the right side */
         .right {
             right: 0;
-            background-color: white;
+            background-color: #FFF;
             color: #152349;
             margin-top: 50px;
-
-
         }
 
         /* content centered horizontally and vertically */
@@ -177,15 +175,7 @@
             line-height: 100%;
         }
 
-        h1 {
-            font-size: 4vh;
 
-        }
-
-        h2 {
-            font-size: 3.5vh;
-
-        }
 
         h3 {
             font-size: 3vh;
@@ -227,6 +217,8 @@
 
         }
 
+
+
         input[type='radio'] {
             transform: scale(2);
         }
@@ -238,7 +230,7 @@
 
         .meter {
             height: 50px;
-            width: 80vh;
+            max-width: 80vh;
             position: relative;
             background: #152349;
             border-radius: 25px;
@@ -435,13 +427,34 @@
             color: #FFF;
         }
 
-.titles {
-margin-top: 20px;
-color: #FFF;
-background-color: #152349;
-font-size: 3vh;
+        .titles {
+        margin-top: 20px;
+        color: #FFF;
+        background-color: #152349;
+        font-size: 3vh;
+        }
 
+
+@media screen and (min-width: 601px) {
+  div.responsive {
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10px;
+
+  }
 }
+
+@media screen and (max-width: 600px) {
+  div.responsive {
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+  }
+}
+
+
 
     </style>
 </head>

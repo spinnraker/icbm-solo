@@ -12,14 +12,6 @@ cluster = MongoClient("mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mong
 # Twelvedata API key
 td = TDClient(apikey="8f91b729c73c4b57b3ceb054ee727a2f")
 
-# db = cluster["ICBM"]
-# collection = db["ETF"]
-
-# results = collection.find({"type": "Value", "style": "Non-ESG"})
-#
-# for results in results:
-#     print(results["ticker"])++++++++++++++++++
-
 
 # Instantiate classes
 user_score_th = mx.TimeRiskMixCalculator()
@@ -32,8 +24,7 @@ final_etf = etf.ESGInvestmentObjectiveETFCalculator()
 final_answers = []
 
 app = Flask(__name__)
-# app.config["MONGO_URI"] = "mongodb+srv://chrono:Pb1YS8VIIGpmRuOi@cluster0.dfgj3.mongodb.net"
-# mongo = PyMongo(app)
+
 
 # Each question is on a separate page
 @app.route('/', methods=['GET', 'POST'])  # What the user sees when visiting the site
