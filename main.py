@@ -212,10 +212,10 @@ def mix_calculator():
     etf_1 = api_data[1][0]
     etf_2 = api_data[2][0]
     etf_3 = api_data[3][0]
-    etf_4 = api_data[3][0]
-    etf_5 = api_data[3][0]
-    etf_6 = api_data[3][0]
-    etf_7 = api_data[3][0]
+    etf_4 = api_data[4][0]
+    etf_5 = api_data[5][0]
+    etf_6 = api_data[6][0]
+    etf_7 = api_data[7][0]
 
 
 
