@@ -206,31 +206,32 @@ def mix_calculator():
 
     print(names)
 
-    another_api = []
+    api_data = []
     for symbol in tickers:
         current = td.time_series(
             symbol=symbol,
             interval="1day",
             outputsize=1
         )
-        another_api.append(current.as_json())
-        list(another_api)
-        print(another_api)
+        api_data.append(current.as_json())
+        list(api_data)
+        print(api_data)
 
-    etf_0 = another_api[0][0]
-    etf_1 = another_api[1][0]
-    etf_2 = another_api[2][0]
-    etf_3 = another_api[3][0]
+    etf_0 = api_data[0][0]
+    etf_1 = api_data[1][0]
+    etf_2 = api_data[2][0]
+    etf_3 = api_data[3][0]
 
 
 
     print("Final results")
     print(final_answers)
     final_answers.clear()
+    print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
                            user_esg=esg_answer, user_io=objective_answer,
                            etf_style=etf_style, etf_type=etf_type,
-                           tickers=tickers, another_api=another_api, etf_0=etf_0,
+                           tickers=tickers, api_data=api_data, etf_0=etf_0,
                            etf_1= etf_1, etf_2=etf_2, etf_3=etf_3,
                            names=names, issuers=issuers, categories=categories)
 
