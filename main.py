@@ -212,6 +212,10 @@ def mix_calculator():
     etf_1 = api_data[1][0]
     etf_2 = api_data[2][0]
     etf_3 = api_data[3][0]
+    etf_4 = api_data[3][0]
+    etf_5 = api_data[3][0]
+    etf_6 = api_data[3][0]
+    etf_7 = api_data[3][0]
 
 
 
@@ -220,11 +224,10 @@ def mix_calculator():
     final_answers.clear()
     print(final_answers)
     return render_template('answers.html', data=data, asset_mix=asset_mix,
-                           user_esg=esg_answer, user_io=objective_answer,
-                           etf_style=etf_style, etf_type=etf_type,
                            tickers=tickers, api_data=api_data, etf_0=etf_0,
-                           etf_1= etf_1, etf_2=etf_2, etf_3=etf_3,
-                           names=names, issuers=issuers, categories=categories)
+                           etf_1= etf_1, etf_2=etf_2, etf_3=etf_3, etf_4=etf_4,
+                           etf_5=etf_5, etf_6=etf_6, etf_7=etf_7, names=names,
+                           issuers=issuers, categories=categories)
 
 
 
