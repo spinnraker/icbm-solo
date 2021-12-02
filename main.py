@@ -194,7 +194,6 @@ def mix_calculator():
         issuers.append(result['issuer'])
         categories.append(result['category'])
 
-
     print(names)
 
     api_data = []
@@ -227,7 +226,8 @@ def mix_calculator():
                            tickers=tickers, api_data=api_data, etf_0=etf_0,
                            etf_1= etf_1, etf_2=etf_2, etf_3=etf_3, etf_4=etf_4,
                            etf_5=etf_5, etf_6=etf_6, etf_7=etf_7, names=names,
-                           issuers=issuers, categories=categories)
+                           issuers=issuers, categories=categories, etf_type=etf_type,
+                           etf_style=etf_style)
 
 
 
@@ -235,112 +235,111 @@ def mix_calculator():
 def about():
     return render_template("about.html")
 
-@app.route("/test")
-def testing_api():
-    print("Start")
-    test_etf = []
-    user_score_th.set_time('a')
-    test_etf.append(user_score_th.get_th_cat())
-    user_score_rp.calc_first_answer('a')
-    user_score_rp.calc_second_answer('a')
-    user_score_rp.calc_third_answer('a')
-    user_score_rp.calc_fourth_answer('a')
-    user_score_th.set_risk_score()
-    test_etf.append(user_score_th.get_risk_cat())
-    # user_score_th.calculate_mix()
-    user_score_th.get_mix()
-    user_score_io.calc_io_first_answer('a')
-    user_score_io.calc_io_second_answer('a')
-    user_score_io.set_objective()
-    test_etf.append(user_score_io.get_cat())
-    user_score_esg.calc_first_answer('e')
-    user_score_esg.calc_second_answer('e')
-    user_score_esg.calc_third_answer('e')
-    user_score_esg.calc_fourth_answer('e')
-    user_score_esg.set_esg_cat()
-    test_etf.append(user_score_esg.get_esg_cat())
-    print("Done")
-    objective_answer = test_etf[2]
-    esg_answer = test_etf[3]
-    final_etf.select_etfs(esg_answer, objective_answer)
-    asset_mix = final_mix.get_mix()
-
-
-    if asset_mix == "Conservative":
-        data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
-                'International Equity': 5, 'Fixed Income': 65,
-                'Alternatives': 5,
-                'Cash': 5}
-    elif asset_mix == "Balanced":
-        data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10,
-                'International Equity': 10, 'Fixed Income': 35,
-                'Alternatives': 5,
-                'Cash': 5}
-    elif asset_mix == "Aggressive":
-        data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
-                'International Equity': 20, 'Fixed Income': 0,
-                'Alternatives': 5,
-                'Cash': 5}
-
-    print(test_etf)  # Not needed on final version
-    #from here
-    etf_style = final_etf.get_etf_style()
-    etf_type = final_etf.get_etf_type()
-
-    print("DB")
-    db = cluster["ICBM"]
-    collection = db["ETF"]
-    etfs = collection.find({"type": etf_type, "style": etf_style})
-
-    tickers = []  # List that will hold the ticker symbols
-    names=[]
-    issuers=[]
-    categories=[]
-    for result in etfs:
-        tickers.append(result['symbol'])
-        names.append(result['name'])
-        issuers.append(result['issuer'])
-        categories.append(result['category'])
-    print(tickers)
-    print(names)
-    print(issuers)
-    print(categories)
-    print("ETFS are: ")
-    print(type(etfs))
-    # print("batch api calls 1")
-    another_api = []
-    for symbol in tickers:
-        current = td.time_series(
-            symbol=symbol,
-            interval="1day",
-            outputsize=1
-        )
-        another_api.append(current.as_json())
-        print(another_api)
-        print("Making it a list")
-        list(another_api)
-    print(another_api)
-
-    print("len")
-    print(len(another_api))
-    test_etf.clear()
-
-    etf_1 = another_api[0][0]
-    etf_2 = another_api[1][0]
-    etf_3 = another_api[2][0]
-    etf_4 = another_api[3][0]
-    print(etf_1)
-    print(etf_2)
-    print(etf_3)
-
-    return render_template('api-test.html', data=data, asset_mix=asset_mix,
-                           user_esg=esg_answer, user_io=objective_answer,
-                           etf_style=etf_style, etf_type=etf_type,
-                           tickers=tickers, another_api=another_api,
-                           etf_1=etf_1, etf_2=etf_2, etf_3=etf_3, etf_4=etf_4,
-                           names=names)
-
-
+# @app.route("/test")
+# def testing_api():
+#     print("Start")
+#     test_etf = []
+#     user_score_th.set_time('a')
+#     test_etf.append(user_score_th.get_th_cat())
+#     user_score_rp.calc_first_answer('a')
+#     user_score_rp.calc_second_answer('a')
+#     user_score_rp.calc_third_answer('a')
+#     user_score_rp.calc_fourth_answer('a')
+#     user_score_th.set_risk_score()
+#     test_etf.append(user_score_th.get_risk_cat())
+#     # user_score_th.calculate_mix()
+#     user_score_th.get_mix()
+#     user_score_io.calc_io_first_answer('a')
+#     user_score_io.calc_io_second_answer('a')
+#     user_score_io.set_objective()
+#     test_etf.append(user_score_io.get_cat())
+#     user_score_esg.calc_first_answer('e')
+#     user_score_esg.calc_second_answer('e')
+#     user_score_esg.calc_third_answer('e')
+#     user_score_esg.calc_fourth_answer('e')
+#     user_score_esg.set_esg_cat()
+#     test_etf.append(user_score_esg.get_esg_cat())
+#     print("Done")
+#     objective_answer = test_etf[2]
+#     esg_answer = test_etf[3]
+#     final_etf.select_etfs(esg_answer, objective_answer)
+#     asset_mix = final_mix.get_mix()
+#
+#
+#     if asset_mix == "Conservative":
+#         data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
+#                 'International Equity': 5, 'Fixed Income': 65,
+#                 'Alternatives': 5,
+#                 'Cash': 5}
+#     elif asset_mix == "Balanced":
+#         data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10,
+#                 'International Equity': 10, 'Fixed Income': 35,
+#                 'Alternatives': 5,
+#                 'Cash': 5}
+#     elif asset_mix == "Aggressive":
+#         data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
+#                 'International Equity': 20, 'Fixed Income': 0,
+#                 'Alternatives': 5,
+#                 'Cash': 5}
+#
+#
+#     etf_style = final_etf.get_etf_style()
+#     etf_type = final_etf.get_etf_type()
+#
+#     print("DB")
+#     db = cluster["ICBM"]
+#     collection = db["ETF"]
+#     etfs = collection.find({"type": etf_type, "style": etf_style})
+#
+#     tickers = []  # List that will hold the ticker symbols
+#     names=[]
+#     issuers=[]
+#     categories=[]
+#     for result in etfs:
+#         tickers.append(result['symbol'])
+#         names.append(result['name'])
+#         issuers.append(result['issuer'])
+#         categories.append(result['category'])
+#     print(tickers)
+#     print(names)
+#     print(issuers)
+#     print(categories)
+#     print("ETFS are: ")
+#     print(type(etfs))
+#     # print("batch api calls 1")
+#     another_api = []
+#     for symbol in tickers:
+#         current = td.time_series(
+#             symbol=symbol,
+#             interval="1day",
+#             outputsize=1
+#         )
+#         another_api.append(current.as_json())
+#         print(another_api)
+#         print("Making it a list")
+#         list(another_api)
+#     print(another_api)
+#
+#     print("len")
+#     print(len(another_api))
+#     test_etf.clear()
+#
+#     etf_1 = another_api[0][0]
+#     etf_2 = another_api[1][0]
+#     etf_3 = another_api[2][0]
+#     etf_4 = another_api[3][0]
+#     print(etf_1)
+#     print(etf_2)
+#     print(etf_3)
+#
+#     return render_template('api-test.html', data=data, asset_mix=asset_mix,
+#                            user_esg=esg_answer, user_io=objective_answer,
+#                            etf_style=etf_style, etf_type=etf_type,
+#                            tickers=tickers, another_api=another_api,
+#                            etf_1=etf_1, etf_2=etf_2, etf_3=etf_3, etf_4=etf_4,
+#                            names=names, etf_style=etf_style, etf_type=etf_type)
+#
+#
 
 
 if __name__ == '__main__':

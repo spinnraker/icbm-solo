@@ -30,8 +30,12 @@
 {% endif %}
 
 
+<div class="titles">
+    <h2>Results</h2>
+    <h2>EFT Style: {{ etf_style }}</h2>
+    <h2> EFT Type: {{ etf_type }}</h2>
+</div>
 
-<h1 class="titles">Results</h1>
         <table class="center">
     <thead>
     <th>Name</th>
@@ -123,11 +127,15 @@
     </tbody>
 </table>
 
+
+<div class="titles">
+        <h2>Asset Mix: {{ asset_mix }}</h2>
+</div>
 <div class="center">
 
 
 
-    <h3 class="titles">Asset Mix: {{ asset_mix }}</h3>
+
 
             <div id="piechart" style="width: 900px; height: 500px;"></div>
 
