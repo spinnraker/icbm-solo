@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="GUI Gapping on navbar and progress bar.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_24_2021_12_43_PM_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Going solo">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +37,6 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -164,7 +162,28 @@
       <option name="project" value="LOCAL" />
       <updated>1638055451950</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Going solo">
+      <created>1638586062095</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1638586062095</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Going solo">
+      <created>1638586206033</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1638586206033</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Going solo">
+      <created>1638586217696</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1638586217696</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +211,8 @@
     <MESSAGE value="Main.py rollback... connection issues" />
     <MESSAGE value="Results fix with display." />
     <MESSAGE value="GUI Gapping on navbar and progress bar." />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI Gapping on navbar and progress bar." />
+    <MESSAGE value="Going solo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Going solo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

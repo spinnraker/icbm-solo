@@ -139,7 +139,6 @@ def esg_fourth():
     print(final_answers)
     return redirect("/results")
 
-
 @app.template_filter()
 def currencyFormat(value):
     value = float(value)
