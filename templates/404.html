@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="split left">
+    <div class="centered">
+
+        <h1>404 Not Found. </h1>
+        <p>OOPS! That didn't work - looks like the page doesn't exist.</p>
+        <p>If you entered the URL manually, please check your spelling and try again.</p>
+        <p>Wanna take the quiz?</p>
+
+    </div>
+</div>
+
+<div class="split right">
+    <div class="centered">
+        <img src="{{url_for('static', filename='icbm_white_background.png')}}"/>
+        <form name="re-take" action="/start" method="get">
+        <input type="submit" value="Take Quiz" class="white-button"/>
+
+    </div>
+</div>
+
+
+{% endblock %}
