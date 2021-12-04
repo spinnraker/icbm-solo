@@ -4,8 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="Going solo">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetchAPI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side_code/MyJDBC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side_code/WholeTableDraft.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side_code/apiCall.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side_code/apiTester.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side_code/frontEndAPI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side_code/practiceAPI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navBar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/splash.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/splashStyles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +197,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638586217696</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update">
+      <created>1638586859512</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1638586859512</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update">
+      <created>1638586884103</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1638586884103</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +240,8 @@
     <MESSAGE value="Results fix with display." />
     <MESSAGE value="GUI Gapping on navbar and progress bar." />
     <MESSAGE value="Going solo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Going solo" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
