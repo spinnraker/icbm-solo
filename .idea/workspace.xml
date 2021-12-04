@@ -4,22 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="update">
+    <list default="true" id="8b7eff37-9d1d-4106-9212-d2bc0cfd26fd" name="Changes" comment="deleted old code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fetchAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/side_code/MyJDBC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/side_code/WholeTableDraft.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/side_code/apiCall.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/side_code/apiTester.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/side_code/frontEndAPI.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/side_code/practiceAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icbm_code/calculations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icbm_code/calculations/etf_calculator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icbm_code/calculations/investment_objective.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icbm_code/calculations/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icbm_code/calculations/mix_calculator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/icbm_code/calculations/risk_profile.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navBar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/splash.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/splashStyles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638586884103</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="deleted old code">
+      <created>1638587523357</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1638587523357</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +242,8 @@
     <MESSAGE value="GUI Gapping on navbar and progress bar." />
     <MESSAGE value="Going solo" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="deleted old code" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted old code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
