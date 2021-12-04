@@ -144,7 +144,6 @@ def currencyFormat(value):
     value = float(value)
     return "${:,.2f}".format(value)
 
-
 @app.route("/results")
 def mix_calculator():
     horizon_answer = final_answers[0]
