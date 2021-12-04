@@ -1,5 +1,1 @@
-
-This is our first document. 
-  Use this for some status changes or something.
-  
-  Sorry for goofing off already lol
+The ICBM Guided Investing Tool is a web application that helps users create a portfolio of Exchange-Traded Funds(ETFs), considering their Environmental, Social, and Governance (ESG) preferences to ensure our investment guidance aligns with their values. We aim to simplify investing and remove one of the significant hurdles for new investors: uncertainty. Our algorithm makes an asset allocation suggestion based on four categories and selects from a curated library of high-performing ETFs. These suggestions include a variety of domestic and international segments, ranging from Large Capitalization companies to Fixed Income and even Alternatives. ICBM was built using Python and is currently deployed on Google Cloud.
