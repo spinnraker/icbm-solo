@@ -5,7 +5,7 @@ class TimeRiskMixCalculator:
     def __init__(self, time_score=0, horizon_category='', risk_score=0,
                  risk_category='', first_answer_score=0,
                  second_answer_score=0, third_answer_score=0,
-                 fourth_answer_score=0, asset_mix=""):
+                 fourth_answer_score=0, asset_mix=''):
         """Initialize time attributes."""
         self.time_score = time_score
         self.horizon_category = horizon_category
@@ -19,21 +19,15 @@ class TimeRiskMixCalculator:
 
     def set_time(self, user_answer):
         """Assigns time horizon scored based on user's input"""
-        if user_answer == 'a':
-            self.time_score = 1
-            self.horizon_category = 'Short Term'
-        elif user_answer == 'b':
-            self.time_score = 2
-            self.horizon_category = 'Intermediate Term'
-        elif user_answer == 'c':
-            self.time_score = 3
-            self.horizon_category = 'Long Term'
-        else:
-            print("You entered an invalid value.")
+        answers = {'a': {'score': 1, 'category': 'Short Term'},
+                   'b': {'score': 2, 'category': 'Intermediate Term'},
+                   'c': {'score': 3, 'category': "Long Term"}}
+
+        self.time_score = answers[user_answer]['score']
+        self.horizon_category = answers[user_answer]['category']
 
     def get_time(self):
         """Return time score"""
-        # return self.horizon_category
         return f'\nTime Horizon Score: {self.time_score}' \
                f'\nHorizon Category: {self.horizon_category}'
 
@@ -44,56 +38,26 @@ class TimeRiskMixCalculator:
 
     def calc_first_answer(self, first_answer):
         """Assigns a value to first Risk question"""
-        if first_answer == 'a':
-            self.first_answer_score = 1
-        elif first_answer == 'b':
-            self.first_answer_score = 2
-        elif first_answer == 'c':
-            self.first_answer_score = 3
-        elif first_answer == 'd':
-            self.first_answer_score = 4
-        elif first_answer == 'e':
-            self.first_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        self.first_answer_score = answers[first_answer]
         return self.first_answer_score
 
     def calc_second_answer(self, second_answer):
         """Assigns a value to second Risk question"""
-        if second_answer == 'a':
-            self.second_answer_score = 2
-        elif second_answer == 'b':
-            self.second_answer_score = 3
-        elif second_answer == 'c':
-            self.second_answer_score = 4
-        elif second_answer == 'd':
-            self.second_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 2, 'b': 3, 'c': 4, 'd': 5}
+        self.second_answer_score = answers[second_answer]
         return self.second_answer_score
 
     def calc_third_answer(self, third_answer):
         """Assigns a value to third Risk question"""
-        if third_answer == 'a':
-            self.third_answer_score = 1
-        elif third_answer == 'b':
-            self.third_answer_score = 3
-        elif third_answer == 'c':
-            self.third_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 3, 'c': 5}
+        self.third_answer_score = answers[third_answer]
         return self.third_answer_score
 
     def calc_fourth_answer(self, fourth_answer):
         """Assigns a value to third Risk question"""
-        if fourth_answer == 'a':
-            self.fourth_answer_score = 1
-        elif fourth_answer == 'b':
-            self.fourth_answer_score = 3
-        elif fourth_answer == 'c':
-            self.fourth_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 3, 'c': 5}
+        self.fourth_answer_score = answers[fourth_answer]
         return self.fourth_answer_score
 
     # Set risk score

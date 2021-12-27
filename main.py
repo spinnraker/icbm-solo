@@ -42,9 +42,7 @@ def index_error(e):
     return render_template('500.html')
 
 
-# Each question is on a separate page
-@app.route('/',
-           methods=['GET', 'POST'])  # What the user sees when visiting the site
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template("index.html")
 
@@ -70,26 +68,20 @@ def io_first():
     return render_template("/io-second.html")
 
 
-# How to create new routes or pages:
 
-@app.route(
-    "/io-second")  # Name of the route will is whatever the last render_template (right above) shows
-def io_second():  # create new function, and named it the same as the route
-    s_answer = request.args.get(
-        "io-second")  # create variable that will hold the user's answers
-    user_score_io.calc_io_second_answer(
-        s_answer)  # Pass that variable to the function that calculates the score
-    user_score_io.set_objective()  # Once you reach the last question of a category, call the SET function
-    print(
-        user_score_io.get_objective())  # After calling SET function, call the GET function
-    # final_answers.append(user_score_io.get_objective())
+"""Name of the route will is whatever the last render_template"""
+@app.route("/io-second")
+def io_second():
+    """create variable that will hold the user's answers"""
+    s_answer = request.args.get("io-second")
+    """Pass that variable to the function that calculates the score"""
+    user_score_io.calc_io_second_answer(s_answer)
+    """Once you reach the last question of a category, call the SET function"""
+    user_score_io.set_objective()
+    """After calling SET function, call the GET function"""
+    print(user_score_io.get_objective())
     final_answers.append(user_score_io.get_cat())
-    # value = user_score_io.get_cat()
-    # final_answers['Investment Objective'] = value
-    return render_template(
-        "/rp-first.html")  # point to the next question, then go to that HTML page file under templates and create a new form.
-    # Repeat the process with as many questions as needed. Once you create all the
-    # questions for a category (risk profile, esg, etc.) move to the next category
+    return render_template("/rp-first.html")
 
 
 @app.route("/rp-first")
@@ -175,22 +167,13 @@ def mix_calculator():
 
     # Determine percentage mix based on Mix Category
     data = {}
-    if asset_mix == "Conservative":
-        data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
-                'International Equity': 5, 'Fixed Income': 65,
-                'Alternatives': 5,
-                'Cash': 5}
-    elif asset_mix == "Balanced":
-        data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10,
-                'International Equity': 10, 'Fixed Income': 35,
-                'Alternatives': 5,
-                'Cash': 5}
-    elif asset_mix == "Aggressive":
-        data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
-                'International Equity': 20, 'Fixed Income': 0,
-                'Alternatives': 5,
-                'Cash': 5}
-
+    mixes = {'Conservative': {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,'International Equity': 5,
+                              'Fixed Income': 65, 'Alternatives': 5, 'Cash': 5},
+             'Balanced': {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10, 'International Equity': 10,
+                          'Fixed Income': 35, 'Alternatives': 5, 'Cash': 5},
+             'Aggressive': {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20, 'International Equity': 20,
+                            'Fixed Income': 0, 'Alternatives': 5, 'Cash': 5}}
+    data = mixes[asset_mix]
     print(data)
     etf_style = final_etf.get_etf_style()
     etf_type = final_etf.get_etf_type()
@@ -282,22 +265,20 @@ def testing_api():
     final_etf.select_etfs(esg_answer, objective_answer)
     asset_mix = final_mix.get_mix()
 
-    if asset_mix == "Conservative":
-        data = {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
-                'International Equity': 5, 'Fixed Income': 65,
-                'Alternatives': 5,
-                'Cash': 5}
-    elif asset_mix == "Balanced":
-        data = {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10,
-                'International Equity': 10, 'Fixed Income': 35,
-                'Alternatives': 5,
-                'Cash': 5}
-    elif asset_mix == "Aggressive":
-        data = {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
-                'International Equity': 20, 'Fixed Income': 0,
-                'Alternatives': 5,
-                'Cash': 5}
+    mixes = {'Conservative': {'Mixes': 'Percentages', 'Large Cap': 15, 'Mid-Cap': 5,
+                             'International Equity': 5, 'Fixed Income': 65,
+                             'Alternatives': 5,
+                             'Cash': 5},
+            'Balanced': {'Mixes': 'Percentages', 'Large Cap': 35, 'Mid-Cap': 10,
+                         'International Equity': 10, 'Fixed Income': 35,
+                         'Alternatives': 5,
+                         'Cash': 5},
+            'Aggressive': {'Mixes': 'Percentages', 'Large Cap': 50, 'Mid-Cap': 20,
+                           'International Equity': 20, 'Fixed Income': 0,
+                           'Alternatives': 5,
+                           'Cash': 5}}
 
+    data = mixes[asset_mix]
     etf_style = final_etf.get_etf_style()
     etf_type = final_etf.get_etf_type()
     print(etf_type)

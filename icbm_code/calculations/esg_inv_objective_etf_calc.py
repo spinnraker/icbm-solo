@@ -23,69 +23,28 @@ class ESGInvestmentObjectiveETFCalculator:
         self.etf_type = etf_type
         self.etf_style = etf_style
 
-    # Functions that calculate questions separately
     def calc_first_answer(self, first_answer):
         """Assigns a value to first ESG question"""
-        if first_answer == 'a':
-            self.first_answer_score = 1
-        elif first_answer == 'b':
-            self.first_answer_score = 2
-        elif first_answer == 'c':
-            self.first_answer_score = 3
-        elif first_answer == 'd':
-            self.first_answer_score = 4
-        elif first_answer == 'e':
-            self.first_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        self.first_answer_score = answers[first_answer]
         return self.first_answer_score
 
     def calc_second_answer(self, second_answer):
         """Assigns a value to the second ESG question"""
-        if second_answer == 'a':
-            self.second_answer_score = 1
-        elif second_answer == 'b':
-            self.second_answer_score = 2
-        elif second_answer == 'c':
-            self.second_answer_score = 3
-        elif second_answer == 'd':
-            self.second_answer_score = 4
-        elif second_answer == 'e':
-            self.second_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        self.second_answer_score = answers[second_answer]
         return self.second_answer_score
 
     def calc_third_answer(self, third_answer):
         """Assigns a value to the third ESG question"""
-        if third_answer == 'a':
-            self.third_answer_score = 1
-        elif third_answer == 'b':
-            self.third_answer_score = 2
-        elif third_answer == 'c':
-            self.third_answer_score = 3
-        elif third_answer == 'd':
-            self.third_answer_score = 4
-        elif third_answer == 'e':
-            self.third_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        self.third_answer_score = answers[third_answer]
         return self.third_answer_score
 
     def calc_fourth_answer(self, fourth_answer):
         """Assigns a value to the fourth ESG question"""
-        if fourth_answer == 'a':
-            self.fourth_answer_score = 1
-        elif fourth_answer == 'b':
-            self.fourth_answer_score = 2
-        elif fourth_answer == 'c':
-            self.fourth_answer_score = 3
-        elif fourth_answer == 'd':
-            self.fourth_answer_score = 4
-        elif fourth_answer == 'e':
-            self.fourth_answer_score = 5
-        else:
-            print("You entered an invalid answer")
+        answers = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        self.first_answer_score = answers[fourth_answer]
         return self.fourth_answer_score
 
     # Calculates ESG category based on total score
@@ -112,30 +71,14 @@ class ESGInvestmentObjectiveETFCalculator:
     # Calculate Investment Objective
     def calc_io_first_answer(self, first_answer):
         """Assigns a value to first investment objective question"""
-        if first_answer == 'a':
-            self.io_first_answer_score = 1
-        elif first_answer == 'b':
-            self.io_first_answer_score = 2
-        elif first_answer == 'c':
-            self.io_first_answer_score = 3
-        elif first_answer == 'd':
-            self.io_first_answer_score = 4
-        elif first_answer == 'e':
-            self.io_first_answer_score = 5
-        else:
-            print('You entered an invalid value')
+        answers = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        self.io_first_answer_score  = answers[first_answer]
         return self.io_first_answer_score
 
     def calc_io_second_answer(self, second_answer):
         """Assigns a value to second investment objective question"""
-        if second_answer == 'a':
-            self.io_second_answer_score = 5
-        elif second_answer == 'b':
-            self.io_second_answer_score = 3
-        elif second_answer == 'c':
-            self.io_second_answer_score = 1
-        else:
-            print("You entered an invalid value")
+        answers = {'a': 5, 'b': 3, 'c': 1}
+        self.io_second_answer_score = answers[second_answer]
         return self.io_second_answer_score
 
     def set_objective(self):
@@ -195,21 +138,3 @@ class ESGInvestmentObjectiveETFCalculator:
 
     def get_etf_type(self):
         return self.etf_type
-
-
-# my_esg = ESGInvestmentObjectiveETFCalculator()
-# my_io = ESGInvestmentObjectiveETFCalculator()
-# one = my_esg.calc_first_answer('e')
-# two = my_esg.calc_second_answer('e')
-# three = my_esg.calc_third_answer('e')
-# four = my_esg.calc_fourth_answer('e')
-#
-# uno = my_io.calc_io_first_answer('a')
-# dos = my_io.calc_io_second_answer('b')
-# my_io.set_objective()
-# totalis = my_io.get_objective()
-#
-# my_esg.set_esg_cat()
-# total = my_esg.get_esg_cat()
-# print(total)
-# print(totalis)
